@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 
 
 var sfx:AudioStream = preload("res://data/sfx/sfx01.wav")
@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.scancode == KEY_SPACE and event.pressed:
+	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed:
 		if _position == Vector2.ZERO:
 			AudioManager.play_sfx(sfx)
 			_velocity.y = 30

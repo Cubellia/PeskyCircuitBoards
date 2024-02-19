@@ -4,8 +4,8 @@
 code = "// text version of OrderedDither.tres
 
 shader_type canvas_item;
-uniform vec4 ColorLight: hint_color;
-uniform vec4 ColorDark: hint_color;
+uniform vec4 ColorLight: source_color;
+uniform vec4 ColorDark: source_color;
 uniform vec2 ScreenSize;
 uniform sampler2D DitherPattern; // 4x4 texture
 

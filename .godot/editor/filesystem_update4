@@ -1,0 +1,4 @@
+res://default_env.tres
+res://data/scenes/Main.tscn
+res://data/fonts/FFFFORWA.tres
+res://data/shader/OrderedDither.tres

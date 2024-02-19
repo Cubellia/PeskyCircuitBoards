@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/tune.wav-de73049c335fff4717b73f69c9252cdc.sample"
+type="AudioStreamWAV"
+uid="uid://bkg55p1atojj7"
+path="res://.godot/imported/tune.wav-de73049c335fff4717b73f69c9252cdc.sample"
 
 [deps]
 
 source_file="res://data/music/tune.wav"
-dest_files=[ "res://.import/tune.wav-de73049c335fff4717b73f69c9252cdc.sample" ]
+dest_files=["res://.godot/imported/tune.wav-de73049c335fff4717b73f69c9252cdc.sample"]
 
 [params]
 
