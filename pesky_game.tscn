@@ -1,49 +1,328 @@
-[gd_scene load_steps=4 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=27 format=3 uid="uid://jg5rjye5ums2"]
 
 [ext_resource type="Script" path="res://Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
-[ext_resource type="Texture2D" uid="uid://d26j6i0br65sb" path="res://icon.png" id="3_3cp1o"]
+[ext_resource type="Texture2D" uid="uid://bm12k0l63tups" path="res://sprites/whackgradient.png" id="2_bgn5r"]
+[ext_resource type="Shader" path="res://scrolluv.gdshader" id="2_o1bfj"]
+[ext_resource type="Texture2D" uid="uid://dkkutq6463nr0" path="res://sprites/bkg.png" id="3_0jqva"]
+[ext_resource type="FontFile" uid="uid://divi2ldtbbnx7" path="res://data/fonts/teeny-tiny-pixls-font/TeenyTinyPixls-o2zo.ttf" id="4_apdy3"]
+[ext_resource type="PackedScene" uid="uid://h2w1db8k8vv2" path="res://enemy.tscn" id="6_f6v8v"]
+[ext_resource type="FontFile" uid="uid://4n22m1rx4rvv" path="res://ui/EffortsPro.ttf" id="7_v38np"]
+[ext_resource type="Shader" path="res://pixeloutline.gdshader" id="8_aoadn"]
+[ext_resource type="Texture2D" uid="uid://bxkp4lt0kq0bs" path="res://sprites/iron.png" id="8_dm0h5"]
+[ext_resource type="Texture2D" uid="uid://cw62ci5cxwh6v" path="res://ui/barempty.png" id="8_jh2jn"]
+[ext_resource type="Texture2D" uid="uid://bnstiourpx51d" path="res://ui/barfull.png" id="9_bqljk"]
+[ext_resource type="AudioStream" uid="uid://dd5pc1rlnfcub" path="res://music/nokia.wav" id="10_icvv3"]
+[ext_resource type="AudioStream" uid="uid://be2crqvn0b7f2" path="res://sfx/good2.wav" id="11_0kia0"]
+[ext_resource type="FontFile" uid="uid://dydcn410cfqqg" path="res://data/fonts/FFFFORWA.TTF" id="14_0n2ft"]
+[ext_resource type="Script" path="res://RestartGame.gd" id="14_ixj24"]
 
-[node name="PeskyGame" type="Node2D" node_paths=PackedStringArray("slots", "iron")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uir7o"]
+shader = ExtResource("2_o1bfj")
+shader_parameter/motion = Vector2(10, 10)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/contrast = 3.0
+shader_parameter/brightness = 1.0
+shader_parameter/graylight = 0.295
+shader_parameter/inverter = ExtResource("2_bgn5r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_febxi"]
+shader = ExtResource("8_aoadn")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = false
+shader_parameter/flashSpeed = 1.0
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iac70"]
+shader = ExtResource("8_aoadn")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = false
+shader_parameter/flashSpeed = 1.0
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 1.0
+
+[sub_resource type="Animation" id="Animation_bc00y"]
+resource_name = "poke"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Iron:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0175984, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-50, -50), Vector2(-20, -20), Vector2(-50, -50)]
+}
+
+[sub_resource type="Animation" id="Animation_wb7ik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Iron:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23, -22)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_leukx"]
+_data = {
+"RESET": SubResource("Animation_wb7ik"),
+"poke": SubResource("Animation_bc00y")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtjbw"]
+shader = ExtResource("8_aoadn")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = true
+shader_parameter/flashSpeed = 1.0
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 1.0
+
+[sub_resource type="Animation" id="Animation_ivy5d"]
+resource_name = "GAMEOVER"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.755742),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -60), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uf130"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -60)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6h67j"]
+_data = {
+"GAMEOVER": SubResource("Animation_ivy5d"),
+"RESET": SubResource("Animation_uf130")
+}
+
+[node name="PeskyGame" type="Node2D" node_paths=PackedStringArray("slots", "iron", "sfx", "score", "solder")]
+process_mode = 3
 texture_filter = 1
 script = ExtResource("1_ri6o6")
 slots = NodePath("Whackgrid/GridSlots")
-iron = NodePath("Icon")
+iron = NodePath("iron")
+sfx = NodePath("SFX")
+score = NodePath("Control/Label")
+solder = NodePath("Control/Solder")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+process_mode = 1
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_bgn5r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+process_mode = 1
+texture_filter = 1
+material = SubResource("ShaderMaterial_uir7o")
+offset_right = 84.0
+offset_bottom = 48.0
+texture = ExtResource("3_0jqva")
+stretch_mode = 1
 
 [node name="Whackgrid" type="Sprite2D" parent="."]
+process_mode = 1
 texture = ExtResource("1_xtgxa")
 centered = false
 
 [node name="GridSlots" type="Node2D" parent="Whackgrid"]
+process_mode = 1
 
 [node name="square1" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(22, 24)
 
 [node name="square2" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(41, 24)
 
 [node name="square3" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(61, 24)
 
 [node name="square4" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(19, 31)
 
 [node name="square5" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(41, 31)
 
 [node name="square6" type="Node2D" parent="Whackgrid/GridSlots"]
-position = Vector2(64, 31)
+process_mode = 1
+position = Vector2(62, 31)
 
 [node name="square7" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(16, 40)
 
+[node name="enemy" parent="Whackgrid/GridSlots/square7" instance=ExtResource("6_f6v8v")]
+process_mode = 1
+
 [node name="square8" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(41, 40)
 
 [node name="square9" type="Node2D" parent="Whackgrid/GridSlots"]
+process_mode = 1
 position = Vector2(67, 40)
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(8.00001, 10)
-scale = Vector2(0.109375, 0.109375)
-texture = ExtResource("3_3cp1o")
+[node name="Control" type="Control" parent="."]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+process_mode = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = -3.0
+offset_right = 83.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0.172549, 0.172549, 0.172549, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_v38np")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 2
+
+[node name="Solder" type="TextureProgressBar" parent="Control"]
+process_mode = 1
+top_level = true
+material = SubResource("ShaderMaterial_febxi")
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 73.0
+offset_bottom = 29.0
+max_value = 20.0
+value = 20.0
+texture_under = ExtResource("8_jh2jn")
+texture_progress = ExtResource("9_bqljk")
+
+[node name="iron" type="Node2D" parent="."]
+process_mode = 1
+position = Vector2(14, 16)
+
+[node name="Iron" type="Sprite2D" parent="iron"]
+process_mode = 1
+material = SubResource("ShaderMaterial_iac70")
+position = Vector2(-23, -22)
+texture = ExtResource("8_dm0h5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="iron"]
+libraries = {
+"": SubResource("AnimationLibrary_leukx")
+}
+
+[node name="SpawnTime" type="Timer" parent="."]
+process_mode = 1
+wait_time = 0.4
+autostart = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_icvv3")
+autoplay = true
+bus = &"Music"
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("11_0kia0")
+bus = &"Sfx"
+
+[node name="GameOver" type="ColorRect" parent="."]
+process_mode = 3
+z_index = 150
+offset_top = -60.0
+offset_right = 84.0
+offset_bottom = -12.0
+script = ExtResource("14_ixj24")
+
+[node name="game over" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 18.0
+offset_right = 72.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
+theme_override_fonts/font = ExtResource("14_0n2ft")
+theme_override_font_sizes/font_size = 8
+text = "GAME OVER"
+
+[node name="try again" type="Label" parent="GameOver"]
+material = SubResource("ShaderMaterial_qtjbw")
+layout_mode = 0
+offset_left = 2.0
+offset_top = 42.0
+offset_right = 104.0
+offset_bottom = 65.0
+theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
+theme_override_fonts/font = ExtResource("4_apdy3")
+theme_override_font_sizes/font_size = 5
+text = "Press 0 to try again"
+
+[node name="FinalScore" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 84.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
+theme_override_fonts/font = ExtResource("7_v38np")
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="MenuAnim" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_6h67j")
+}
+
+[connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]

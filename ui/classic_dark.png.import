@@ -1,0 +1,22 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://dkfftrhj7yml1"
+path="res://.godot/imported/classic_dark.png-039af035bab55a40d0fe21c6188eb873.fontdata"
+
+[deps]
+
+source_file="res://ui/classic_dark.png"
+dest_files=["res://.godot/imported/classic_dark.png-039af035bab55a40d0fe21c6188eb873.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("\'A\'-\'Z\'", "\'a\'-\'z\'", "\'0\'-\'9\'")
+columns=99
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 0, 0)
+fallbacks=[]
+compress=true
+scaling_mode=1

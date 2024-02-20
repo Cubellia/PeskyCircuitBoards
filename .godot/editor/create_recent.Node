@@ -1,4 +1,14 @@
+Label
+AnimationPlayer
+ColorRect
+TextureProgressBar
+ProgressBar
+Timer
+Sprite2D
 Node2D
-Node
-SubViewport
+AudioStreamPlayer
+AnimatedSprite2D
+TextureRect
+TextEdit
 Control
+Node

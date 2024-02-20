@@ -6,3 +6,13 @@ res://data/shader/2tone.gdshader
 res://data/scenes/Game.tscn
 res://pesky_game.tscn
 res://Whacka.gd
+res://outliner.gdshader
+res://background.gdshader
+res://scrolluv.gdshader
+res://pixeloutline.gdshader
+res://enemy.tscn
+res://enemy_basic.gd
+res://default_bus_layout.tres
+res://flash.gdshader
+res://enemy.gd
+res://RestartGame.gd

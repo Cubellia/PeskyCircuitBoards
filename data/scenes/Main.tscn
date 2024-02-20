@@ -16,10 +16,11 @@ shader_parameter/border_size = -600.0
 shader_parameter/enable_dot_matrix = false
 shader_parameter/glare_amount = 0.002
 shader_parameter/brightness = 0.0
-shader_parameter/pixel_shadow_amount = 0.254
-shader_parameter/lcd_dark_square_transparency = 0.324
+shader_parameter/pixel_shadow_amount = 0.244
+shader_parameter/lcd_dark_square_transparency = 0.12
 
 [node name="Main" type="Node"]
+process_mode = 3
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
