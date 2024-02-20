@@ -28,9 +28,12 @@ settings/fps/force_fps=15
 
 [display]
 
-window/size/viewport_width=840
-window/size/viewport_height=480
+window/size/viewport_width=84
+window/size/viewport_height=48
+window/size/window_width_override=840
+window/size/window_height_override=480
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [input]
 
@@ -98,6 +101,8 @@ nokia_#={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
 environment/defaults/default_environment="res://default_env.tres"
 quality/driver/driver_name="GLES2"
 quality/filters/use_nearest_mipmap_filter=true

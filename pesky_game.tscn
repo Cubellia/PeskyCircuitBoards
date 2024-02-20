@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://jg5rjye5ums2"]
+
+[ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
+
+[node name="PeskyGame" type="Node2D"]
+texture_filter = 1
+
+[node name="Whackgrid" type="Sprite2D" parent="."]
+texture = ExtResource("1_xtgxa")
+centered = false
+
+[node name="GridSlots" type="Node2D" parent="Whackgrid"]
+
+[node name="0,0" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(16, 40)
+
+[node name="2,0" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(22, 24)
+
+[node name="2,1" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(41, 24)
+
+[node name="2,2" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(61, 24)
+
+[node name="1,0" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(19, 31)
+
+[node name="1,1" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(41, 31)
+
+[node name="1,2" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(64, 31)
+
+[node name="0,1" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(41, 40)
+
+[node name="0,2" type="Node2D" parent="Whackgrid/GridSlots"]
+position = Vector2(67, 40)

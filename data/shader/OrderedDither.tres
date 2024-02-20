@@ -224,7 +224,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-878, 144.125)
+graph_offset = Vector2(-1264.64, -197.721)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(380, 40)
@@ -311,7 +311,7 @@ nodes/fragment/22/position = Vector2(-640, -40)
 nodes/fragment/23/node = SubResource("16")
 nodes/fragment/23/position = Vector2(-1220, 340)
 nodes/fragment/24/node = SubResource("17")
-nodes/fragment/24/position = Vector2(-1400, 340)
+nodes/fragment/24/position = Vector2(-1480, 140)
 nodes/fragment/25/node = SubResource("18")
 nodes/fragment/25/position = Vector2(-1400, 420)
 nodes/fragment/26/node = SubResource("19")

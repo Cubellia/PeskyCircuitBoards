@@ -2,3 +2,6 @@ res://default_env.tres
 res://data/scenes/Main.tscn
 res://data/fonts/FFFFORWA.tres
 res://data/shader/OrderedDither.tres
+res://data/shader/2tone.gdshader
+res://data/scenes/Game.tscn
+res://pesky_game.tscn
