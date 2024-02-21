@@ -30,6 +30,9 @@ func _unhandled_input(event):
 							else:
 								zof=10
 							iron.z_index=zof
+							var column = (int(k)-1)%3
+							#print(column)
+							character.find_child("face").frame=column
 							var square = slots.find_child("square"+k)
 							iron.global_position=square.global_position
 							iron.find_child("AnimationPlayer").seek(0.0)
