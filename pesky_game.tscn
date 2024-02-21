@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=35 format=3 uid="uid://jg5rjye5ums2"]
 
 [ext_resource type="Script" path="res://Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
@@ -16,6 +16,15 @@
 [ext_resource type="AudioStream" uid="uid://be2crqvn0b7f2" path="res://sfx/good2.wav" id="11_0kia0"]
 [ext_resource type="FontFile" uid="uid://dydcn410cfqqg" path="res://data/fonts/FFFFORWA.TTF" id="14_0n2ft"]
 [ext_resource type="Script" path="res://RestartGame.gd" id="14_ixj24"]
+[ext_resource type="Texture2D" uid="uid://dd2rgfpbb26v3" path="res://sprites/chara/faceNeut.png" id="17_lunoc"]
+[ext_resource type="Texture2D" uid="uid://cjmn3jyab0heu" path="res://sprites/chara/facegog.png" id="18_mik5q"]
+
+[sub_resource type="Gradient" id="Gradient_mc646"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.151276, 0.151276, 0.151276, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ppxvj"]
+gradient = SubResource("Gradient_mc646")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uir7o"]
 shader = ExtResource("2_o1bfj")
@@ -25,7 +34,56 @@ shader_parameter/offset = Vector2(0, 0)
 shader_parameter/contrast = 3.0
 shader_parameter/brightness = 1.0
 shader_parameter/graylight = 0.295
-shader_parameter/inverter = ExtResource("2_bgn5r")
+shader_parameter/inverter = SubResource("GradientTexture1D_ppxvj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aoimg"]
+shader = ExtResource("8_aoadn")
+shader_parameter/color = Color(0.0705882, 0.0705882, 0.243137, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = false
+shader_parameter/flashSpeed = 1.0
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 1.0
+
+[sub_resource type="Animation" id="Animation_hysyf"]
+resource_name = "Solder"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Facegog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(42, 13), Vector2(42, 13), Vector2(42, 5), Vector2(42, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_87rb6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Facegog:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(42, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38unm"]
+_data = {
+"RESET": SubResource("Animation_87rb6"),
+"Solder": SubResource("Animation_hysyf")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_febxi"]
 shader = ExtResource("8_aoadn")
@@ -53,21 +111,6 @@ shader_parameter/start_frame = 0
 shader_parameter/current_frame = 0
 shader_parameter/mix_ratio = 1.0
 
-[sub_resource type="Animation" id="Animation_bc00y"]
-resource_name = "poke"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Iron:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0175984, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-50, -50), Vector2(-20, -20), Vector2(-50, -50)]
-}
-
 [sub_resource type="Animation" id="Animation_wb7ik"]
 length = 0.001
 tracks/0/type = "value"
@@ -81,6 +124,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-23, -22)]
+}
+
+[sub_resource type="Animation" id="Animation_bc00y"]
+resource_name = "poke"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Iron:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0175984, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-50, -50), Vector2(-20, -20), Vector2(-50, -50)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_leukx"]
@@ -138,7 +196,7 @@ _data = {
 "RESET": SubResource("Animation_uf130")
 }
 
-[node name="PeskyGame" type="Node2D" node_paths=PackedStringArray("slots", "iron", "sfx", "score", "solder")]
+[node name="PeskyGame" type="Node2D" node_paths=PackedStringArray("slots", "iron", "sfx", "score", "solder", "character")]
 process_mode = 3
 texture_filter = 1
 script = ExtResource("1_ri6o6")
@@ -147,6 +205,7 @@ iron = NodePath("iron")
 sfx = NodePath("SFX")
 score = NodePath("Control/Label")
 solder = NodePath("Control/Solder")
+character = NodePath("Bkg/Chara")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 process_mode = 1
@@ -155,7 +214,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_bgn5r")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Bkg" type="TextureRect" parent="."]
 process_mode = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_uir7o")
@@ -163,6 +222,23 @@ offset_right = 84.0
 offset_bottom = 48.0
 texture = ExtResource("3_0jqva")
 stretch_mode = 1
+
+[node name="Chara" type="Node2D" parent="Bkg"]
+position = Vector2(1, 0)
+
+[node name="FaceNeut" type="Sprite2D" parent="Bkg/Chara"]
+material = SubResource("ShaderMaterial_aoimg")
+position = Vector2(42, 24)
+texture = ExtResource("17_lunoc")
+
+[node name="Facegog" type="Sprite2D" parent="Bkg/Chara"]
+position = Vector2(42, 5)
+texture = ExtResource("18_mik5q")
+
+[node name="CharAnim" type="AnimationPlayer" parent="Bkg/Chara"]
+libraries = {
+"": SubResource("AnimationLibrary_38unm")
+}
 
 [node name="Whackgrid" type="Sprite2D" parent="."]
 process_mode = 1
@@ -174,42 +250,84 @@ process_mode = 1
 
 [node name="square1" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
+z_index = 5
+z_as_relative = false
 position = Vector2(22, 24)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square1" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="square2" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
+z_index = 5
+z_as_relative = false
 position = Vector2(41, 24)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square2" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="square3" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
-position = Vector2(61, 24)
+z_index = 5
+z_as_relative = false
+position = Vector2(59, 24)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square3" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="square4" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
-position = Vector2(19, 31)
+z_index = 7
+z_as_relative = false
+position = Vector2(19, 32)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square4" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="square5" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
-position = Vector2(41, 31)
+z_index = 7
+z_as_relative = false
+position = Vector2(41, 32)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square5" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="square6" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
-position = Vector2(62, 31)
+z_index = 7
+z_as_relative = false
+position = Vector2(62, 32)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square6" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="square7" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
-position = Vector2(16, 40)
+z_index = 9
+z_as_relative = false
+position = Vector2(16, 42)
 
 [node name="enemy" parent="Whackgrid/GridSlots/square7" instance=ExtResource("6_f6v8v")]
 process_mode = 1
 
 [node name="square8" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
-position = Vector2(41, 40)
+z_index = 9
+z_as_relative = false
+position = Vector2(41, 42)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square8" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="square9" type="Node2D" parent="Whackgrid/GridSlots"]
 process_mode = 1
-position = Vector2(67, 40)
+z_index = 9
+z_as_relative = false
+position = Vector2(65, 42)
+
+[node name="enemy" parent="Whackgrid/GridSlots/square9" instance=ExtResource("6_f6v8v")]
+process_mode = 1
 
 [node name="Control" type="Control" parent="."]
 process_mode = 1
@@ -238,10 +356,10 @@ process_mode = 1
 top_level = true
 material = SubResource("ShaderMaterial_febxi")
 layout_mode = 0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 73.0
-offset_bottom = 29.0
+offset_left = 12.0
+offset_top = 46.0
+offset_right = 84.0
+offset_bottom = 73.0
 max_value = 20.0
 value = 20.0
 texture_under = ExtResource("8_jh2jn")
@@ -249,7 +367,9 @@ texture_progress = ExtResource("9_bqljk")
 
 [node name="iron" type="Node2D" parent="."]
 process_mode = 1
-position = Vector2(14, 16)
+z_index = 6
+z_as_relative = false
+position = Vector2(47, 39)
 
 [node name="Iron" type="Sprite2D" parent="iron"]
 process_mode = 1

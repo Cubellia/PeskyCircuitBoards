@@ -5,6 +5,7 @@ extends Node2D
 @export var sfx:AudioStreamPlayer
 @export var score:Label
 @export var solder:TextureProgressBar
+@export var character:Node2D
 var enemy = preload("res://enemy.tscn")
 var enemies = []
 
@@ -21,11 +22,20 @@ func _unhandled_input(event):
 					if InputMap.action_has_event(action, event):
 						var k = action.split('_')[1];
 						if not k=="0" && not k=="#"&&not k=="*":
+							var zof = 6
+							if int(k)<=3:
+								zof=6
+							elif int(k)>=4 && int(k)<=6:
+								zof = 8
+							else:
+								zof=10
+							iron.z_index=zof
 							var square = slots.find_child("square"+k)
 							iron.global_position=square.global_position
 							iron.find_child("AnimationPlayer").seek(0.0)
 							iron.find_child("AnimationPlayer").play("poke")
-							
+							character.find_child("CharAnim").seek(0.0)
+							character.find_child("CharAnim").play("Solder")
 							if square.get_child_count()>0:
 								if not square.get_child(0).dead:
 									score.text=str(int(score.text)+1)

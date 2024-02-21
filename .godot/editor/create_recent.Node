@@ -1,11 +1,11 @@
-Label
 AnimationPlayer
+Node2D
+Label
 ColorRect
 TextureProgressBar
 ProgressBar
 Timer
 Sprite2D
-Node2D
 AudioStreamPlayer
 AnimatedSprite2D
 TextureRect
