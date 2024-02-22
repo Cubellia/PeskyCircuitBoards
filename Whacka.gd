@@ -37,12 +37,15 @@ func _unhandled_input(event):
 							iron.global_position=square.global_position
 							iron.find_child("AnimationPlayer").seek(0.0)
 							iron.find_child("AnimationPlayer").play("poke")
-							character.find_child("CharAnim").seek(0.0)
-							character.find_child("CharAnim").play("Solder")
+							character.find_child("GogglePlayer").seek(0.0)
+							character.find_child("GogglePlayer").play("Solder")
 							if square.get_child_count()>0:
 								if not square.get_child(0).dead:
 									score.text=str(int(score.text)+1)
 									sfx.stream=sfx_good
+									character.find_child("FacePlayer").seek(0.0)
+									character.find_child("FacePlayer").play("Success")
+									#character.find_child("face").frame = 3
 									sfx.play(0.0)
 									square.get_child(0).unalive()
 									#THIS IS TEMPORARY until we add health packs or smth
@@ -54,6 +57,9 @@ func _unhandled_input(event):
 										solder.value-=1
 							else:
 								sfx.stream=sfx_neutral
+								character.find_child("FacePlayer").seek(0.0)
+								character.find_child("FacePlayer").play("Failure")
+								#character.find_child("face").frame = 4
 								sfx.play(0.0)
 								if solder.value==1:
 									_gameOver()

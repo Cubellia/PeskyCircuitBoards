@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=37 format=3 uid="uid://jg5rjye5ums2"]
 
 [ext_resource type="Script" path="res://Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
@@ -41,20 +41,18 @@ shader_parameter/start_frame = 0
 shader_parameter/current_frame = 0
 shader_parameter/mix_ratio = 1.0
 
-[sub_resource type="Animation" id="Animation_hysyf"]
-resource_name = "Solder"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("goggles:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(-0.1, 0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(42, 13), Vector2(42, 24), Vector2(42, 24), Vector2(42, 14)]
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_quon2"]
+shader = ExtResource("8_aoadn")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = false
+shader_parameter/flashSpeed = 1.0
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 1.0
 
 [sub_resource type="Animation" id="Animation_87rb6"]
 length = 0.001
@@ -68,13 +66,130 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(42, 14)]
+"values": [Vector2(42, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("goggles:material:shader_parameter/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goggles:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_hysyf"]
+resource_name = "Solder"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("goggles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(42, 13), Vector2(42, 24), Vector2(42, 24), Vector2(42, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("goggles:material:shader_parameter/width")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("goggles:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_38unm"]
 _data = {
 "RESET": SubResource("Animation_87rb6"),
 "Solder": SubResource("Animation_hysyf")
+}
+
+[sub_resource type="Animation" id="Animation_yrg22"]
+resource_name = "Failure"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../face:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yhqav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../face:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pko38"]
+resource_name = "Success"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../face:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ixeoy"]
+_data = {
+"Failure": SubResource("Animation_yrg22"),
+"RESET": SubResource("Animation_yhqav"),
+"Success": SubResource("Animation_pko38")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_febxi"]
@@ -216,21 +331,31 @@ texture = ExtResource("3_0jqva")
 stretch_mode = 1
 
 [node name="Chara" type="Node2D" parent="Bkg"]
-position = Vector2(1, 0)
+position = Vector2(0, -1)
 
 [node name="face" type="Sprite2D" parent="Bkg/Chara"]
 material = SubResource("ShaderMaterial_aoimg")
-position = Vector2(42, 24)
+position = Vector2(42, 13)
 texture = ExtResource("17_lunoc")
-hframes = 3
+hframes = 5
+frame = 1
 
 [node name="goggles" type="Sprite2D" parent="Bkg/Chara"]
-position = Vector2(42, 14)
+material = SubResource("ShaderMaterial_quon2")
+position = Vector2(42, 11)
 texture = ExtResource("18_mik5q")
+hframes = 2
+frame = 1
 
-[node name="CharAnim" type="AnimationPlayer" parent="Bkg/Chara"]
+[node name="GogglePlayer" type="AnimationPlayer" parent="Bkg/Chara"]
 libraries = {
 "": SubResource("AnimationLibrary_38unm")
+}
+
+[node name="FacePlayer" type="AnimationPlayer" parent="Bkg/Chara"]
+root_node = NodePath("../GogglePlayer")
+libraries = {
+"": SubResource("AnimationLibrary_ixeoy")
 }
 
 [node name="Whackgrid" type="Sprite2D" parent="."]
