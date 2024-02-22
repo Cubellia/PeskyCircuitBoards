@@ -8,6 +8,8 @@ extends Node2D
 @export var character:Node2D
 var enemy = preload("res://enemy.tscn")
 var enemies = []
+var jitterTween 
+@export var jitterSpeed = 0.05
 
 var sfx_good=preload("res://sfx/good2.wav")
 var sfx_neutral=preload("res://sfx/blip4.wav")
@@ -56,7 +58,14 @@ func _unhandled_input(event):
 									else:
 										solder.value-=1
 							else:
+								###PLAYER FAIL STATE###
 								sfx.stream=sfx_neutral
+								if jitterTween:
+									jitterTween.kill() #Aborts previous anim
+								jitterTween = get_tree().create_tween()
+								jitterTween.tween_property($Bkg/Chara, "position", Vector2(-2, -1), jitterSpeed).set_trans(Tween.TRANS_LINEAR)
+								jitterTween.set_loops(2)
+								jitterTween.tween_property($Bkg/Chara, "position", Vector2(0, -1), jitterSpeed) .set_trans(Tween.TRANS_LINEAR) 
 								character.find_child("FacePlayer").seek(0.0)
 								character.find_child("FacePlayer").play("Failure")
 								#character.find_child("face").frame = 4

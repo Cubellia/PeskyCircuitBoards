@@ -9,3 +9,6 @@ res://outliner.gdshader
 res://background.gdshader
 res://flash.gdshader
 res://inverter.gdshader
+res://data/scenes/Main.tscn
+res://enemy.tscn
+res://Whacka.gd
