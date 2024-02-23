@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://h2w1db8k8vv2"]
+[gd_scene load_steps=28 format=3 uid="uid://h2w1db8k8vv2"]
 
 [ext_resource type="Script" path="res://sprites/enemies/enemy.gd" id="1_mulhl"]
 [ext_resource type="Shader" path="res://shaders/pixeloutline.gdshader" id="2_s7llg"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://sprites/enemies/cappy tan/enemy_basic.gd" id="4_nkigt"]
 [ext_resource type="Script" path="res://sprites/enemies/IC/enemy_IC.gd" id="5_358ca"]
 [ext_resource type="Texture2D" uid="uid://cq0voi7ajdx5v" path="res://sprites/enemies/IC/IC_big.png" id="5_bmnh5"]
+[ext_resource type="Texture2D" uid="uid://d38o0wabxsosg" path="res://sprites/enemies/IC/IC_medium.png" id="7_t3p5t"]
+[ext_resource type="Texture2D" uid="uid://cxbaxws1jisf8" path="res://sprites/enemies/IC/IC_small.png" id="8_n80rn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6fhtm"]
 resource_local_to_scene = true
@@ -89,6 +91,94 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw6p8"]
+atlas = ExtResource("7_t3p5t")
+region = Rect2(0, 0, 20, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kc832"]
+atlas = ExtResource("7_t3p5t")
+region = Rect2(20, 0, 20, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4sb7"]
+atlas = ExtResource("7_t3p5t")
+region = Rect2(40, 0, 20, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ykd0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw6p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kc832")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4sb7")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnkee"]
+atlas = ExtResource("8_n80rn")
+region = Rect2(0, 0, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3ht7"]
+atlas = ExtResource("8_n80rn")
+region = Rect2(0, 0, 13, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_en6j1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnkee")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3ht7")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wge6c"]
+atlas = ExtResource("8_n80rn")
+region = Rect2(13, 0, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u668b"]
+atlas = ExtResource("8_n80rn")
+region = Rect2(13, 0, 13, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6e5sf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wge6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u668b")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]
+
 [node name="enemy" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_mulhl")
@@ -121,10 +211,54 @@ script = ExtResource("5_358ca")
 wait_time = 0.7
 one_shot = true
 
+[node name="enemy_IC2" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-3, 4)
+sprite_frames = SubResource("SpriteFrames_ykd0p")
+animation = &"unalive"
+autoplay = "default"
+offset = Vector2(2.765, -10)
+script = ExtResource("5_358ca")
+
+[node name="Timer" type="Timer" parent="enemy_IC2"]
+wait_time = 0.7
+one_shot = true
+
+[node name="enemy_IC3a" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-1, 4)
+sprite_frames = SubResource("SpriteFrames_en6j1")
+autoplay = "default"
+offset = Vector2(2.765, -10)
+script = ExtResource("5_358ca")
+
+[node name="Timer" type="Timer" parent="enemy_IC3a"]
+wait_time = 0.7
+one_shot = true
+
+[node name="enemy_ICb" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-1, 4)
+sprite_frames = SubResource("SpriteFrames_6e5sf")
+animation = &"unalive"
+autoplay = "default"
+offset = Vector2(2.765, -10)
+script = ExtResource("5_358ca")
+
+[node name="Timer" type="Timer" parent="enemy_ICb"]
+wait_time = 0.7
+one_shot = true
+
 [node name="smushed" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
 [connection signal="timeout" from="enemy_cappytan/Timer" to="enemy_cappytan" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC/Timer" to="enemy_IC" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_IC2/Timer" to="enemy_IC2" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_IC3a/Timer" to="enemy_IC3a" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_ICb/Timer" to="enemy_ICb" method="_on_timer_timeout"]
 [connection signal="timeout" from="smushed" to="." method="_on_smushed_timeout"]

@@ -17,7 +17,7 @@ var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
 
-var unlocked_enemies=1
+var unlocked_enemies=3
 
 func _unhandled_input(event):
 	if event is InputEventKey:
