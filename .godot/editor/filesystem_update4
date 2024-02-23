@@ -16,3 +16,5 @@ res://shaders/pixeloutline.gdshader
 res://shaders/flash.gdshader
 res://shaders/invertOnBG.gdshader
 res://Whacka.gd
+res://sprites/enemies/IC/enemy_IC.gd
+res://data/scenes/Main.tscn

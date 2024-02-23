@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://h2w1db8k8vv2"]
+[gd_scene load_steps=16 format=3 uid="uid://h2w1db8k8vv2"]
 
 [ext_resource type="Script" path="res://sprites/enemies/enemy.gd" id="1_mulhl"]
 [ext_resource type="Shader" path="res://shaders/pixeloutline.gdshader" id="2_s7llg"]
 [ext_resource type="Texture2D" uid="uid://cda4vegdarldw" path="res://sprites/enemies/cappy tan/cappytan.png" id="3_sgg41"]
 [ext_resource type="Script" path="res://sprites/enemies/cappy tan/enemy_basic.gd" id="4_nkigt"]
 [ext_resource type="Script" path="res://sprites/enemies/IC/enemy_IC.gd" id="5_358ca"]
+[ext_resource type="Texture2D" uid="uid://cq0voi7ajdx5v" path="res://sprites/enemies/IC/IC_big.png" id="5_bmnh5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6fhtm"]
 resource_local_to_scene = true
@@ -20,26 +21,26 @@ shader_parameter/start_frame = 0
 shader_parameter/current_frame = 0
 shader_parameter/mix_ratio = 0.405
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0hce"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0i16"]
 atlas = ExtResource("3_sgg41")
-region = Rect2(0, 0, 15, 20)
+region = Rect2(0, 0, 17, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x6qpb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nug2x"]
 atlas = ExtResource("3_sgg41")
-region = Rect2(15, 0, 15, 20)
+region = Rect2(17, 0, 17, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_udxs0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxi8m"]
 atlas = ExtResource("3_sgg41")
-region = Rect2(30, 0, 15, 20)
+region = Rect2(34, 0, 17, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kumbr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w0hce")
+"texture": SubResource("AtlasTexture_s0i16")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x6qpb")
+"texture": SubResource("AtlasTexture_nug2x")
 }],
 "loop": true,
 "name": &"default",
@@ -47,7 +48,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_udxs0")
+"texture": SubResource("AtlasTexture_cxi8m")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_484ti"]
+atlas = ExtResource("5_bmnh5")
+region = Rect2(0, 0, 27, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecxb0"]
+atlas = ExtResource("5_bmnh5")
+region = Rect2(27, 0, 27, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmpfy"]
+atlas = ExtResource("5_bmnh5")
+region = Rect2(54, 0, 27, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fdb6a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_484ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecxb0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmpfy")
 }],
 "loop": true,
 "name": &"unalive",
@@ -59,30 +94,32 @@ texture_filter = 1
 script = ExtResource("1_mulhl")
 
 [node name="enemy_cappytan" type="AnimatedSprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-3, 0)
 sprite_frames = SubResource("SpriteFrames_kumbr")
 autoplay = "default"
-frame_progress = 0.787398
 offset = Vector2(2.765, -10)
 script = ExtResource("4_nkigt")
 
 [node name="Timer" type="Timer" parent="enemy_cappytan"]
 wait_time = 0.7
 one_shot = true
-autostart = true
 
 [node name="enemy_IC" type="AnimatedSprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_6fhtm")
-sprite_frames = SubResource("SpriteFrames_kumbr")
+position = Vector2(-1, 4)
+sprite_frames = SubResource("SpriteFrames_fdb6a")
 autoplay = "default"
-frame_progress = 0.787398
+frame = 1
+frame_progress = 0.399558
 offset = Vector2(2.765, -10)
 script = ExtResource("5_358ca")
 
 [node name="Timer" type="Timer" parent="enemy_IC"]
 wait_time = 0.7
 one_shot = true
-autostart = true
 
 [node name="smushed" type="Timer" parent="."]
 wait_time = 0.6

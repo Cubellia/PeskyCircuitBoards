@@ -17,7 +17,7 @@ var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
 
-
+var unlocked_enemies=1
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -115,5 +115,10 @@ func _on_spawn_time_timeout():
 	if slots.get_child(randomtile).get_child_count()==0:
 		var e = enemy.instantiate()
 		slots.get_child(randomtile).add_child(e)
+		#set self destruct timer. this cant be turned on until after its added to the tree
+		var enemyType=	e.get_child(randi_range(0,unlocked_enemies))
+		enemyType.visible=true
+		enemyType.get_child(0).paused=false
+		enemyType.get_child(0).start()
 		e.position=Vector2.ZERO
 		
