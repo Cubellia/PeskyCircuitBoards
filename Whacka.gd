@@ -17,7 +17,7 @@ var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
 
-var unlocked_enemies=3
+var unlocked_enemies=4
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -47,7 +47,7 @@ func _unhandled_input(event):
 							iron.find_child("AnimationPlayer").seek(0.0)
 							iron.find_child("AnimationPlayer").play("poke")
 							character.find_child("GogglePlayer").seek(0.0)
-							character.find_child("GogglePlayer").play("Solder")
+							character.find_child("GogglePlayer").play("RESET")
 							
 							##check to see if the square has an enemy on it
 							if square.get_child_count()>0:
@@ -80,6 +80,9 @@ func _unhandled_input(event):
 								jitterTween.tween_property($Bkg/Chara, "position", Vector2(0, -1), jitterSpeed) .set_trans(Tween.TRANS_LINEAR) 
 								character.find_child("FacePlayer").seek(0.0)
 								character.find_child("FacePlayer").play("Failure")
+								character.find_child("GogglePlayer").seek(0.0)
+								character.find_child("GogglePlayer").play("Solder")
+								
 								#character.find_child("face").frame = 4
 								sfx.play(0.0)
 								if solder.value==1:

@@ -66,11 +66,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(42, 11)]
+"values": [Vector2(42, 24)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("goggles:material:shader_parameter/width")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -90,7 +90,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_hysyf"]
@@ -102,7 +102,7 @@ tracks/0/path = NodePath("goggles:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.1, 0, 0.2, 0.4),
+"times": PackedFloat32Array(-0.1, 0, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(42, 13), Vector2(42, 24), Vector2(42, 24), Vector2(42, 11)]
@@ -114,7 +114,7 @@ tracks/1/path = NodePath("goggles:material:shader_parameter/width")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0.0, 1.0]
@@ -126,7 +126,7 @@ tracks/2/path = NodePath("goggles:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
@@ -342,10 +342,9 @@ frame = 1
 
 [node name="goggles" type="Sprite2D" parent="Bkg/Chara"]
 material = SubResource("ShaderMaterial_quon2")
-position = Vector2(42, 11)
+position = Vector2(42, 24)
 texture = ExtResource("18_mik5q")
 hframes = 2
-frame = 1
 
 [node name="GogglePlayer" type="AnimationPlayer" parent="Bkg/Chara"]
 libraries = {
