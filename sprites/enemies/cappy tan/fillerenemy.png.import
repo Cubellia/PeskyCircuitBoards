@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cda4vegdarldw"
-path="res://.godot/imported/cappytan.png-7043dcbbe9c27949bd05d16a5a7c40d7.ctex"
+uid="uid://c2hc7nbdao3vy"
+path="res://.godot/imported/fillerenemy.png-20167ee618ea55789b796e2d2587cb39.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/cappytan.png"
-dest_files=["res://.godot/imported/cappytan.png-7043dcbbe9c27949bd05d16a5a7c40d7.ctex"]
+source_file="res://sprites/enemies/cappy tan/fillerenemy.png"
+dest_files=["res://.godot/imported/fillerenemy.png-20167ee618ea55789b796e2d2587cb39.ctex"]
 
 [params]
 

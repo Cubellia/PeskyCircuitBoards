@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btf8tgatg5lep"
-path="res://.godot/imported/e_capacitor.png-9592180f4267f195b2ad2689e4c1444e.ctex"
+uid="uid://cxbaxws1jisf8"
+path="res://.godot/imported/IC_small.png-32263fbd8b41b110b30c3e99d884bb65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/e_capacitor.png"
-dest_files=["res://.godot/imported/e_capacitor.png-9592180f4267f195b2ad2689e4c1444e.ctex"]
+source_file="res://sprites/enemies/IC/IC_small.png"
+dest_files=["res://.godot/imported/IC_small.png-32263fbd8b41b110b30c3e99d884bb65.ctex"]
 
 [params]
 

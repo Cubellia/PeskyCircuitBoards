@@ -16,14 +16,19 @@ var sfx_neutral=preload("res://sfx/blip4.wav")
 var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
+
+
+
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
 			if(event.as_text_key_label().contains("Kp ")&&get_tree().paused==false):
 				for action in InputMap.get_actions():#this is absolutely disgusting. do i really have to???? ffs
 					if InputMap.action_has_event(action, event):
+						##isolate the number of the nokia keypad key, and ignore the irrelevant ones
 						var k = action.split('_')[1];
 						if not k=="0" && not k=="#"&&not k=="*":
+							#get the active column for the eyes to look at
 							var zof = 6
 							if int(k)<=3:
 								zof=6
@@ -35,14 +40,19 @@ func _unhandled_input(event):
 							var column = (int(k)-1)%3
 							#print(column)
 							character.find_child("face").frame=column
+							
+							##find the square based on the input key and make the human stab it
 							var square = slots.find_child("square"+k)
 							iron.global_position=square.global_position
 							iron.find_child("AnimationPlayer").seek(0.0)
 							iron.find_child("AnimationPlayer").play("poke")
 							character.find_child("GogglePlayer").seek(0.0)
 							character.find_child("GogglePlayer").play("Solder")
+							
+							##check to see if the square has an enemy on it
 							if square.get_child_count()>0:
-								if not square.get_child(0).dead:
+								if not square.get_child(0).dead: ##if the enemy is alive
+									
 									score.text=str(int(score.text)+1)
 									sfx.stream=sfx_good
 									character.find_child("FacePlayer").seek(0.0)
@@ -50,14 +60,16 @@ func _unhandled_input(event):
 									#character.find_child("face").frame = 3
 									sfx.play(0.0)
 									square.get_child(0).unalive()
-									#THIS IS TEMPORARY until we add health packs or smth
+									#THIS IS TEMPORARY? until we add health packs or smth?
 									solder.value+=1
-								else:
+								else:  ##if the enemy is dead already
 									if solder.value==1:
 										_gameOver()
 									else:
 										solder.value-=1
-							else:
+							
+							
+							else:  ##if there is nothing on the square
 								###PLAYER FAIL STATE###
 								sfx.stream=sfx_neutral
 								if jitterTween:

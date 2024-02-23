@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxbaxws1jisf8"
-path="res://.godot/imported/IC_small.png-62336dca00f1c578cb5477c949712bf9.ctex"
+uid="uid://cq0voi7ajdx5v"
+path="res://.godot/imported/IC_big.png-4feb918b9ebb0bc63a8034e2dcc1f76f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/IC_small.png"
-dest_files=["res://.godot/imported/IC_small.png-62336dca00f1c578cb5477c949712bf9.ctex"]
+source_file="res://sprites/enemies/IC/IC_big.png"
+dest_files=["res://.godot/imported/IC_big.png-4feb918b9ebb0bc63a8034e2dcc1f76f.ctex"]
 
 [params]
 

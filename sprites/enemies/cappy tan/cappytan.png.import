@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjmn3jyab0heu"
-path="res://.godot/imported/facegog.png-ee3423ec1b1082f0d97d567ee7bf5ee5.ctex"
+uid="uid://cda4vegdarldw"
+path="res://.godot/imported/cappytan.png-f8724813bbccdd8b1d800c082a0658db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/chara/facegog.png"
-dest_files=["res://.godot/imported/facegog.png-ee3423ec1b1082f0d97d567ee7bf5ee5.ctex"]
+source_file="res://sprites/enemies/cappy tan/cappytan.png"
+dest_files=["res://.godot/imported/cappytan.png-f8724813bbccdd8b1d800c082a0658db.ctex"]
 
 [params]
 

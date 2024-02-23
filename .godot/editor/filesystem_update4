@@ -1,6 +1,6 @@
 res://default_bus_layout.tres
 res://default_env.tres
-res://pesky_game.tscn
+res://sprites/enemies/enemy.tscn
 res://pixeloutline.gdshader
 res://data/shader/2tone.gdshader
 res://scrolluv.gdshader
@@ -9,8 +9,10 @@ res://outliner.gdshader
 res://background.gdshader
 res://flash.gdshader
 res://invertOnBG.gdshader
-res://data/scenes/Main.tscn
-res://enemy.tscn
-res://sprites/enemies/enemy.tscn
+res://pesky_game.tscn
+res://shaders/outliner.gdshader
+res://shaders/scrolluv.gdshader
+res://shaders/pixeloutline.gdshader
+res://shaders/flash.gdshader
+res://shaders/invertOnBG.gdshader
 res://Whacka.gd
-res://enemy.gd

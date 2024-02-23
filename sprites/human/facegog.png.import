@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq0voi7ajdx5v"
-path="res://.godot/imported/IC_big.png-5250f39ecdeefc23394fac804a324e81.ctex"
+uid="uid://cjmn3jyab0heu"
+path="res://.godot/imported/facegog.png-02155dc8171dd96bad23b9dba3ad2b09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/IC_big.png"
-dest_files=["res://.godot/imported/IC_big.png-5250f39ecdeefc23394fac804a324e81.ctex"]
+source_file="res://sprites/human/facegog.png"
+dest_files=["res://.godot/imported/facegog.png-02155dc8171dd96bad23b9dba3ad2b09.ctex"]
 
 [params]
 
