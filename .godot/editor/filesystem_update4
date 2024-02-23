@@ -8,7 +8,9 @@ res://data/shader/OrderedDither.tres
 res://outliner.gdshader
 res://background.gdshader
 res://flash.gdshader
-res://inverter.gdshader
+res://invertOnBG.gdshader
 res://data/scenes/Main.tscn
 res://enemy.tscn
+res://sprites/enemies/enemy.tscn
 res://Whacka.gd
+res://enemy.gd

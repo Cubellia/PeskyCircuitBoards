@@ -6,7 +6,7 @@ extends Node2D
 @export var score:Label
 @export var solder:TextureProgressBar
 @export var character:Node2D
-var enemy = preload("res://enemy.tscn")
+var enemy = preload("res://sprites/enemies/enemy.tscn")
 var enemies = []
 var jitterTween 
 @export var jitterSpeed = 0.05

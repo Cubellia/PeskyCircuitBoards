@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://h2w1db8k8vv2"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_obxuv"]
+[ext_resource type="Shader" path="res://pixeloutline.gdshader" id="2_77cgu"]
+[ext_resource type="Texture2D" uid="uid://cda4vegdarldw" path="res://sprites/enemies/cappytan.png" id="3_uy5g1"]
+[ext_resource type="Script" path="res://sprites/enemies/enemy_basic.gd" id="4_o03ck"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fhtm"]
+resource_local_to_scene = true
+shader = ExtResource("2_77cgu")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = false
+shader_parameter/flashSpeed = 10.0
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 0.405
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0hce"]
+atlas = ExtResource("3_uy5g1")
+region = Rect2(0, 0, 15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6qpb"]
+atlas = ExtResource("3_uy5g1")
+region = Rect2(15, 0, 15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udxs0"]
+atlas = ExtResource("3_uy5g1")
+region = Rect2(30, 0, 15, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kumbr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0hce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6qpb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udxs0")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]
+
+[node name="enemy" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_obxuv")
+
+[node name="enemy_cappytan" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_6fhtm")
+sprite_frames = SubResource("SpriteFrames_kumbr")
+autoplay = "default"
+frame_progress = 0.787398
+offset = Vector2(2.765, -10)
+script = ExtResource("4_o03ck")
+
+[node name="Timer" type="Timer" parent="enemy_cappytan"]
+wait_time = 0.7
+one_shot = true
+autostart = true
+
+[node name="smushed" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="timeout" from="enemy_cappytan/Timer" to="enemy_cappytan" method="_on_timer_timeout"]
+[connection signal="timeout" from="smushed" to="." method="_on_smushed_timeout"]
