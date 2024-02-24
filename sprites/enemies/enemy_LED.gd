@@ -13,8 +13,10 @@ func unalive():
 		$Timer.stop()
 		animation="unalive"
 		material.set_shader_parameter("flashing",true)
-	else: AudioManager.play_sfx(failsfx)
-
+		Global._scoreIncrease(2)
+	else:
+		AudioManager.play_sfx(failsfx)
+		Global._solderDecrease(2)
 func _process(_delta):
 	if is_instance_valid(get_parent().whospawnedme):
 		if get_parent().whospawnedme.dead == true:

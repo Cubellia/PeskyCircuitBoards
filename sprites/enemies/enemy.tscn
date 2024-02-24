@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://h2w1db8k8vv2"]
+[gd_scene load_steps=47 format=3 uid="uid://h2w1db8k8vv2"]
 
 [ext_resource type="Script" path="res://sprites/enemies/enemy.gd" id="1_mulhl"]
 [ext_resource type="Shader" path="res://shaders/pixeloutline.gdshader" id="2_s7llg"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://sprites/enemies/enemy_LED.gd" id="7_hsoua"]
 [ext_resource type="Texture2D" uid="uid://d38o0wabxsosg" path="res://sprites/enemies/IC/IC_medium.png" id="7_t3p5t"]
 [ext_resource type="Texture2D" uid="uid://cxbaxws1jisf8" path="res://sprites/enemies/IC/IC_small.png" id="8_n80rn"]
+[ext_resource type="Script" path="res://sprites/enemies/enemy_IC2.gd" id="12_5m6gb"]
+[ext_resource type="Script" path="res://sprites/enemies/enemy_IC3.gd" id="14_rh4lt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6fhtm"]
 resource_local_to_scene = true
@@ -358,7 +360,7 @@ sprite_frames = SubResource("SpriteFrames_ykd0p")
 animation = &"unalive"
 autoplay = "default"
 offset = Vector2(2.765, -10)
-script = ExtResource("5_358ca")
+script = ExtResource("12_5m6gb")
 
 [node name="Timer" type="Timer" parent="enemy_IC2"]
 wait_time = 0.7
@@ -371,7 +373,7 @@ position = Vector2(-1, 4)
 sprite_frames = SubResource("SpriteFrames_en6j1")
 autoplay = "default"
 offset = Vector2(2.765, -10)
-script = ExtResource("5_358ca")
+script = ExtResource("14_rh4lt")
 
 [node name="Timer" type="Timer" parent="enemy_IC3a"]
 wait_time = 0.7
@@ -385,7 +387,7 @@ sprite_frames = SubResource("SpriteFrames_6e5sf")
 animation = &"unalive"
 autoplay = "default"
 offset = Vector2(2.765, -10)
-script = ExtResource("5_358ca")
+script = ExtResource("14_rh4lt")
 
 [node name="Timer" type="Timer" parent="enemy_ICb"]
 wait_time = 0.7

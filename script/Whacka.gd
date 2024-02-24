@@ -24,7 +24,16 @@ var unlocked_enemies=2
 func _ready():
 	AudioManager.play_music(music_main)
 	Global.spawnEnemy.connect(_spawnEnemy)
- 
+	Global.solderDecrease.connect(_solderDecrease)
+	Global.scoreIncrease.connect(_scoreIncrease)
+func _solderDecrease(amt):
+	if solder.value-amt<=0:
+		_gameOver()
+	else:solder.value-=amt
+	
+func _scoreIncrease(amt):
+	score.text=str(int(score.text)+amt)
+
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
@@ -61,7 +70,7 @@ func _unhandled_input(event):
 							if square.get_child_count()>0:
 								if not square.get_child(0).dead: ##if the enemy is alive
 									
-									score.text=str(int(score.text)+1)
+								
 									#sfx.stream=sfx_good
 									character.find_child("FacePlayer").seek(0.0)
 									character.find_child("FacePlayer").play("Success")
@@ -73,10 +82,7 @@ func _unhandled_input(event):
 									#THIS IS TEMPORARY? until we add health packs or smth?
 									solder.value+=1
 								else:  ##if the enemy is dead already
-									if solder.value==1:
-										_gameOver()
-									else:
-										solder.value-=1
+									_solderDecrease(1)
 							
 							
 							else:  ##if there is nothing on the square
@@ -96,10 +102,8 @@ func _unhandled_input(event):
 								#character.find_child("face").frame = 4
 								#sfx.play(0.0)
 								AudioManager.play_sfx(sfx_neutral)
-								if solder.value==1:
-									_gameOver()
-								else:
-									solder.value-=1
+								_solderDecrease(1)
+
 
 						
 #func _process(delta):
