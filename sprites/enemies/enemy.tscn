@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://h2w1db8k8vv2"]
+[gd_scene load_steps=45 format=3 uid="uid://h2w1db8k8vv2"]
 
 [ext_resource type="Script" path="res://sprites/enemies/enemy.gd" id="1_mulhl"]
 [ext_resource type="Shader" path="res://shaders/pixeloutline.gdshader" id="2_s7llg"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://sprites/enemies/cappy tan/enemy_basic.gd" id="4_nkigt"]
 [ext_resource type="Script" path="res://sprites/enemies/IC/enemy_IC.gd" id="5_358ca"]
 [ext_resource type="Texture2D" uid="uid://cq0voi7ajdx5v" path="res://sprites/enemies/IC/IC_big.png" id="5_bmnh5"]
+[ext_resource type="Texture2D" uid="uid://bmbguloghrdyv" path="res://sprites/enemies/Switch/switch.png" id="5_x1hg1"]
+[ext_resource type="Texture2D" uid="uid://b34lgdot0w45b" path="res://sprites/enemies/LED/led.png" id="6_ggb04"]
+[ext_resource type="Script" path="res://sprites/enemies/enemy_switch.gd" id="6_umetd"]
+[ext_resource type="Script" path="res://sprites/enemies/enemy_LED.gd" id="7_hsoua"]
 [ext_resource type="Texture2D" uid="uid://d38o0wabxsosg" path="res://sprites/enemies/IC/IC_medium.png" id="7_t3p5t"]
 [ext_resource type="Texture2D" uid="uid://cxbaxws1jisf8" path="res://sprites/enemies/IC/IC_small.png" id="8_n80rn"]
 
@@ -51,6 +55,114 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cxi8m")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moo0i"]
+atlas = ExtResource("5_x1hg1")
+region = Rect2(0, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt3ve"]
+atlas = ExtResource("5_x1hg1")
+region = Rect2(24, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w25v"]
+atlas = ExtResource("5_x1hg1")
+region = Rect2(48, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a1sc"]
+atlas = ExtResource("5_x1hg1")
+region = Rect2(72, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5pgg"]
+atlas = ExtResource("5_x1hg1")
+region = Rect2(96, 0, 24, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jf0lf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moo0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt3ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w25v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a1sc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5pgg")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1lmy"]
+atlas = ExtResource("6_ggb04")
+region = Rect2(26, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhe4t"]
+atlas = ExtResource("6_ggb04")
+region = Rect2(78, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br7q0"]
+atlas = ExtResource("6_ggb04")
+region = Rect2(104, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83opk"]
+atlas = ExtResource("6_ggb04")
+region = Rect2(78, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjot4"]
+atlas = ExtResource("6_ggb04")
+region = Rect2(130, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dka2j"]
+atlas = ExtResource("6_ggb04")
+region = Rect2(156, 0, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lhu7a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1lmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhe4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br7q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83opk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjot4")
+}],
+"loop": true,
+"name": &"default_vulnerable",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dka2j")
 }],
 "loop": true,
 "name": &"unalive",
@@ -179,9 +291,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="enemy" type="Node2D"]
+[node name="enemy" type="Node2D" node_paths=PackedStringArray("validEnemies")]
 texture_filter = 1
 script = ExtResource("1_mulhl")
+validEnemies = [NodePath("enemy_cappytan"), NodePath("enemy_switch"), NodePath("enemy_IC")]
 
 [node name="enemy_cappytan" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -193,6 +306,32 @@ offset = Vector2(2.765, -10)
 script = ExtResource("4_nkigt")
 
 [node name="Timer" type="Timer" parent="enemy_cappytan"]
+wait_time = 0.7
+one_shot = true
+
+[node name="enemy_switch" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-3, 0)
+sprite_frames = SubResource("SpriteFrames_jf0lf")
+autoplay = "default"
+offset = Vector2(2.765, -10)
+script = ExtResource("6_umetd")
+
+[node name="Timer" type="Timer" parent="enemy_switch"]
+wait_time = 0.7
+one_shot = true
+
+[node name="enemy_LED" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-3, 0)
+sprite_frames = SubResource("SpriteFrames_lhu7a")
+autoplay = "default"
+offset = Vector2(2.765, -10)
+script = ExtResource("7_hsoua")
+
+[node name="Timer" type="Timer" parent="enemy_LED"]
 wait_time = 0.7
 one_shot = true
 
@@ -257,6 +396,8 @@ wait_time = 0.6
 one_shot = true
 
 [connection signal="timeout" from="enemy_cappytan/Timer" to="enemy_cappytan" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_switch/Timer" to="enemy_switch" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_LED/Timer" to="enemy_LED" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC/Timer" to="enemy_IC" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC2/Timer" to="enemy_IC2" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC3a/Timer" to="enemy_IC3a" method="_on_timer_timeout"]

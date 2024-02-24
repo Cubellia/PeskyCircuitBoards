@@ -17,10 +17,13 @@ var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
 
-var unlocked_enemies=4
+var unlocked_enemies=2
+
+
 
 func _ready():
 	AudioManager.play_music(music_main)
+	Global.spawnEnemy.connect(_spawnEnemy)
  
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -49,6 +52,8 @@ func _unhandled_input(event):
 							iron.global_position=square.global_position
 							iron.find_child("AnimationPlayer").seek(0.0)
 							iron.find_child("AnimationPlayer").play("poke")
+							
+							iron.find_child("Shadow").play("default")
 							character.find_child("GogglePlayer").seek(0.0)
 							character.find_child("GogglePlayer").play("RESET")
 							
@@ -64,6 +69,7 @@ func _unhandled_input(event):
 									#sfx.play(0.0)
 									AudioManager.play_sfx(sfx_good)
 									square.get_child(0).unalive()
+									
 									#THIS IS TEMPORARY? until we add health packs or smth?
 									solder.value+=1
 								else:  ##if the enemy is dead already
@@ -119,15 +125,26 @@ func _gameOver():
 	$GameOver/FinalScore.text="Score: "+score.text
 	print("YOU lOSE")
 
+func _spawnEnemy(who,fromwho):
+	print ("Spawn "+str(who))
+	if Global.board_occupancy < Global.max_board_occupancy:
+		var randomtile = randi_range(0,8)
+		if slots.get_child(randomtile).get_child_count()==0:
+			var e = enemy.instantiate()
+			slots.get_child(randomtile).add_child(e)
+			Global.board_occupancy+=1
+			e.pickType(who,true)
+			e.whospawnedme=fromwho
 func _on_spawn_time_timeout():
-	var randomtile = randi_range(0,8)
-	if slots.get_child(randomtile).get_child_count()==0:
-		var e = enemy.instantiate()
-		slots.get_child(randomtile).add_child(e)
-		#set self destruct timer. this cant be turned on until after its added to the tree
-		var enemyType=	e.get_child(randi_range(0,unlocked_enemies))
-		enemyType.visible=true
-		enemyType.get_child(0).paused=false
-		enemyType.get_child(0).start()
-		e.position=Vector2.ZERO
+	if Global.board_occupancy < Global.max_board_occupancy:
+		var randomtile = randi_range(0,8)
+		if slots.get_child(randomtile).get_child_count()==0:
+			var e = enemy.instantiate()
+			slots.get_child(randomtile).add_child(e)
+		
+			#set self destruct timer. this cant be turned on until after its added to the tree
+			Global.board_occupancy+=1
+			e.pickType(randi_range(0,unlocked_enemies))
+			e.position=Vector2.ZERO
+			
 		

@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 [autoload]
 
 AudioManager="*res://data/autoload/AudioManager.gd"
+Global="*res://script/globalvar.gd"
 
 [debug]
 
@@ -41,6 +42,7 @@ folder_colors={
 "res://data/": "gray",
 "res://music/": "teal",
 "res://palettes/": "gray",
+"res://script/": "orange",
 "res://sfx/": "teal",
 "res://sprites/": "pink"
 }

@@ -1,6 +1,6 @@
-[gd_scene load_steps=37 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=44 format=3 uid="uid://jg5rjye5ums2"]
 
-[ext_resource type="Script" path="res://Whacka.gd" id="1_ri6o6"]
+[ext_resource type="Script" path="res://script/Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
 [ext_resource type="Texture2D" uid="uid://bm12k0l63tups" path="res://sprites/whackgradient.png" id="2_bgn5r"]
 [ext_resource type="Shader" path="res://shaders/scrolluv.gdshader" id="2_o1bfj"]
@@ -13,8 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://bnstiourpx51d" path="res://ui/barfull.png" id="9_bqljk"]
 [ext_resource type="AudioStream" uid="uid://dd5pc1rlnfcub" path="res://music/nokia.wav" id="10_icvv3"]
 [ext_resource type="AudioStream" uid="uid://be2crqvn0b7f2" path="res://sfx/good2.wav" id="11_0kia0"]
+[ext_resource type="Texture2D" uid="uid://deinywi4fijqw" path="res://sprites/ironshadow.png" id="13_ofd8p"]
 [ext_resource type="FontFile" uid="uid://dydcn410cfqqg" path="res://data/fonts/FFFFORWA.TTF" id="14_0n2ft"]
-[ext_resource type="Script" path="res://RestartGame.gd" id="14_ixj24"]
+[ext_resource type="Script" path="res://script/RestartGame.gd" id="14_ixj24"]
 [ext_resource type="Texture2D" uid="uid://dd2rgfpbb26v3" path="res://sprites/human/faceNeut.png" id="17_lunoc"]
 [ext_resource type="Texture2D" uid="uid://cjmn3jyab0heu" path="res://sprites/human/facegog.png" id="18_mik5q"]
 
@@ -254,6 +255,49 @@ _data = {
 "poke": SubResource("Animation_bc00y")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8oig"]
+atlas = ExtResource("13_ofd8p")
+region = Rect2(0, 0, 23, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp2jt"]
+atlas = ExtResource("13_ofd8p")
+region = Rect2(23, 0, 23, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a82eo"]
+atlas = ExtResource("13_ofd8p")
+region = Rect2(46, 0, 23, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhp8j"]
+atlas = ExtResource("13_ofd8p")
+region = Rect2(69, 0, 23, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8ex5"]
+atlas = ExtResource("13_ofd8p")
+region = Rect2(0, 0, 23, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sanny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8oig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp2jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a82eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhp8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8ex5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 11.0
+}]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtjbw"]
 shader = ExtResource("8_aoadn")
 shader_parameter/color = Color(1, 1, 1, 1)
@@ -456,9 +500,9 @@ horizontal_alignment = 2
 
 [node name="iron" type="Node2D" parent="."]
 process_mode = 1
-z_index = 6
+z_index = 8
 z_as_relative = false
-position = Vector2(12, 14)
+position = Vector2(6, 14)
 
 [node name="Iron" type="Sprite2D" parent="iron"]
 process_mode = 1
@@ -470,6 +514,13 @@ texture = ExtResource("8_dm0h5")
 libraries = {
 "": SubResource("AnimationLibrary_leukx")
 }
+
+[node name="Shadow" type="AnimatedSprite2D" parent="iron"]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(-12, -8)
+sprite_frames = SubResource("SpriteFrames_sanny")
+centered = false
 
 [node name="SpawnTime" type="Timer" parent="."]
 process_mode = 1
