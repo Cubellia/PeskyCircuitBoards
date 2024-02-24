@@ -19,6 +19,9 @@ var sfx_restart=preload("res://sfx/good3.wav")
 
 var unlocked_enemies=4
 
+func _ready():
+	AudioManager.play_music(music_main)
+ 
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
@@ -54,11 +57,12 @@ func _unhandled_input(event):
 								if not square.get_child(0).dead: ##if the enemy is alive
 									
 									score.text=str(int(score.text)+1)
-									sfx.stream=sfx_good
+									#sfx.stream=sfx_good
 									character.find_child("FacePlayer").seek(0.0)
 									character.find_child("FacePlayer").play("Success")
 									#character.find_child("face").frame = 3
-									sfx.play(0.0)
+									#sfx.play(0.0)
+									AudioManager.play_sfx(sfx_good)
 									square.get_child(0).unalive()
 									#THIS IS TEMPORARY? until we add health packs or smth?
 									solder.value+=1
@@ -71,7 +75,7 @@ func _unhandled_input(event):
 							
 							else:  ##if there is nothing on the square
 								###PLAYER FAIL STATE###
-								sfx.stream=sfx_neutral
+								#sfx.stream=sfx_neutral
 								if jitterTween:
 									jitterTween.kill() #Aborts previous anim
 								jitterTween = get_tree().create_tween()
@@ -84,7 +88,8 @@ func _unhandled_input(event):
 								character.find_child("GogglePlayer").play("Solder")
 								
 								#character.find_child("face").frame = 4
-								sfx.play(0.0)
+								#sfx.play(0.0)
+								AudioManager.play_sfx(sfx_neutral)
 								if solder.value==1:
 									_gameOver()
 								else:
@@ -102,14 +107,15 @@ func _reloadgame():
 	score.text="0"
 	print("reload game")
 	$MenuAnim.play("RESET")
-	$Music.stream=music_main
-	$Music.play()
-
+	#$Music.stream=music_main
+	#$Music.play()
+	AudioManager.play_music(music_main)
 func _gameOver():
 	get_tree().paused = true
 	$MenuAnim.play("GAMEOVER")
-	$Music.stream=music_gameOver
-	$Music.play()
+	#$Music.stream=music_gameOver
+	#$Music.play()
+	AudioManager.play_music(music_gameOver)
 	$GameOver/FinalScore.text="Score: "+score.text
 	print("YOU lOSE")
 

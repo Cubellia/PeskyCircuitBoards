@@ -186,7 +186,7 @@ script = ExtResource("1_mulhl")
 [node name="enemy_cappytan" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-4, 0)
+position = Vector2(-3, 0)
 sprite_frames = SubResource("SpriteFrames_kumbr")
 autoplay = "default"
 offset = Vector2(2.765, -10)
@@ -228,7 +228,7 @@ one_shot = true
 [node name="enemy_IC3a" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-3, 8)
+position = Vector2(-1, 4)
 sprite_frames = SubResource("SpriteFrames_en6j1")
 autoplay = "default"
 offset = Vector2(2.765, -10)
@@ -241,8 +241,9 @@ one_shot = true
 [node name="enemy_ICb" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-2, 7)
+position = Vector2(-1, 4)
 sprite_frames = SubResource("SpriteFrames_6e5sf")
+animation = &"unalive"
 autoplay = "default"
 offset = Vector2(2.765, -10)
 script = ExtResource("5_358ca")
