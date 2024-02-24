@@ -131,7 +131,7 @@ func _gameOver():
 
 func _spawnEnemy(who,fromwho):
 	print ("Spawn "+str(who))
-	if Global.board_occupancy < Global.max_board_occupancy:
+	if Global.board_occupancy < 8:
 		var randomtile = randi_range(0,8)
 		if slots.get_child(randomtile).get_child_count()==0:
 			var e = enemy.instantiate()
