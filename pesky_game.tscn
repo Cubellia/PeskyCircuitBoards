@@ -584,4 +584,9 @@ libraries = {
 "": SubResource("AnimationLibrary_6h67j")
 }
 
+[node name="SolderDepleter" type="Timer" parent="."]
+process_mode = 1
+autostart = true
+
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
+[connection signal="timeout" from="SolderDepleter" to="." method="_on_solder_depleter_timeout"]

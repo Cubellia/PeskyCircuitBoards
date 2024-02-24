@@ -43,6 +43,7 @@ func _unhandled_input(event):
 						##isolate the number of the nokia keypad key, and ignore the irrelevant ones
 						var k = action.split('_')[1];
 						if not k=="0" && not k=="#"&&not k=="*":
+							$SolderDepleter.start()#reset the solder depleter timer if the player isnt inactive
 							#get the active column for the eyes to look at
 							var zof = 6
 							if int(k)<=3:
@@ -152,3 +153,7 @@ func _on_spawn_time_timeout():
 			e.position=Vector2.ZERO
 			
 		
+
+
+func _on_solder_depleter_timeout():
+	_solderDecrease(1)
