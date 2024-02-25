@@ -1,32 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4j1hqmidquah"]
+[gd_scene load_steps=6 format=3 uid="uid://d4j1hqmidquah"]
 
-[ext_resource type="Shader" path="res://data/shader/2tone.gdshader" id="1_5j67i"]
+[ext_resource type="Material" uid="uid://c6c5rp76nb0q8" path="res://shaders/material_nokiascreen.tres" id="1_648pm"]
 [ext_resource type="PackedScene" uid="uid://jg5rjye5ums2" path="res://pesky_game.tscn" id="2_6nq8a"]
-[ext_resource type="Texture2D" uid="uid://cpd4j2wt7qwsw" path="res://NOKIA3310.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c54slw7vlffy0" path="res://nokiaframe.png" id="3_l23ay"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6yrn"]
-shader = ExtResource("1_5j67i")
-shader_parameter/dot_size = 4.0
-shader_parameter/palette = 1
-shader_parameter/invert = false
-shader_parameter/color_swap = true
-shader_parameter/color_correction = false
-shader_parameter/use_image_for_lcd = true
-shader_parameter/border_size = -600.0
-shader_parameter/enable_dot_matrix = false
-shader_parameter/glare_amount = 0.002
-shader_parameter/brightness = 0.0
-shader_parameter/pixel_shadow_amount = 0.244
-shader_parameter/lcd_dark_square_transparency = 0.12
+[sub_resource type="Gradient" id="Gradient_ylfsg"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m4b4y"]
+gradient = SubResource("Gradient_ylfsg")
 
 [node name="Main" type="Node"]
 process_mode = 3
 
+[node name="ColorRect" type="Sprite2D" parent="."]
+material = ExtResource("1_648pm")
+position = Vector2(421.5, 234.5)
+scale = Vector2(10.1719, 6.26563)
+texture = SubResource("GradientTexture2D_m4b4y")
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
-material = SubResource("ShaderMaterial_s6yrn")
-offset_right = 84.0
-offset_bottom = 48.0
+material = ExtResource("1_648pm")
+offset_left = 119.0
+offset_top = 66.0
+offset_right = 203.0
+offset_bottom = 114.0
+scale = Vector2(7, 7)
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
@@ -37,11 +38,11 @@ render_target_update_mode = 4
 
 [node name="InfoLabel" type="RichTextLabel" parent="."]
 clip_contents = false
-offset_left = 99.0
-offset_top = -15.0
-offset_right = 833.0
-offset_bottom = 680.0
-scale = Vector2(0.300586, 0.300586)
+offset_left = 862.0
+offset_top = 110.0
+offset_right = 1596.0
+offset_bottom = 805.0
+scale = Vector2(0.257006, 0.257006)
 bbcode_enabled = true
 text = "Delete this InfoLabel Node when not needed anymore
 
@@ -85,11 +86,13 @@ This makes the Game.tscn scene run at a resolution of 84x48. The SubViewportCont
 scroll_active = false
 
 [node name="Nokia3310" type="Sprite2D" parent="InfoLabel"]
-position = Vector2(867, 68)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3")
+position = Vector2(-1727.59, 1311.25)
+rotation = -0.00539001
+scale = Vector2(4.17695, 3.51463)
+texture = ExtResource("3_l23ay")
 
 [node name="PaletteRect1" type="ColorRect" parent="InfoLabel"]
+visible = false
 layout_mode = 0
 offset_left = 786.0
 offset_top = 342.0
@@ -98,6 +101,7 @@ offset_bottom = 382.0
 color = Color(0.780392, 0.941176, 0.847059, 1)
 
 [node name="PaletteRect2" type="ColorRect" parent="InfoLabel"]
+visible = false
 layout_mode = 0
 offset_left = 786.0
 offset_top = 382.0
@@ -106,6 +110,7 @@ offset_bottom = 422.0
 color = Color(0.262745, 0.321569, 0.239216, 1)
 
 [node name="PaletteRect3" type="ColorRect" parent="InfoLabel"]
+visible = false
 layout_mode = 0
 offset_left = 846.0
 offset_top = 342.0
@@ -114,6 +119,7 @@ offset_bottom = 382.0
 color = Color(0.607843, 0.780392, 0, 1)
 
 [node name="PaletteRect4" type="ColorRect" parent="InfoLabel"]
+visible = false
 layout_mode = 0
 offset_left = 846.0
 offset_top = 382.0
@@ -122,6 +128,7 @@ offset_bottom = 422.0
 color = Color(0.168627, 0.247059, 0.0352941, 1)
 
 [node name="PaletteRect5" type="ColorRect" parent="InfoLabel"]
+visible = false
 layout_mode = 0
 offset_left = 906.0
 offset_top = 342.0
@@ -130,6 +137,7 @@ offset_bottom = 382.0
 color = Color(0.529412, 0.568627, 0.533333, 1)
 
 [node name="PaletteRect6" type="ColorRect" parent="InfoLabel"]
+visible = false
 layout_mode = 0
 offset_left = 906.0
 offset_top = 382.0

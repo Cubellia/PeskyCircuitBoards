@@ -1,14 +1,14 @@
+Sprite2D
+TextureRect
+ColorRect
 Timer
 AnimatedSprite2D
 AnimationPlayer
 Label
 Node2D
-ColorRect
 TextureProgressBar
 ProgressBar
-Sprite2D
 AudioStreamPlayer
-TextureRect
 TextEdit
 Control
 Node

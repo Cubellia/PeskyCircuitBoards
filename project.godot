@@ -29,10 +29,8 @@ settings/fps/force_fps=15
 
 [display]
 
-window/size/viewport_width=84
-window/size/viewport_height=48
-window/size/window_width_override=840
-window/size/window_height_override=480
+window/size/viewport_width=840
+window/size/viewport_height=480
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 

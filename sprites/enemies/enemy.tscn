@@ -533,7 +533,7 @@ material = SubResource("ShaderMaterial_62oh8")
 position = Vector2(-9, 5)
 sprite_frames = SubResource("SpriteFrames_dop23")
 autoplay = "default"
-frame_progress = 0.549181
+frame_progress = 0.202181
 offset = Vector2(2.765, -10)
 script = ExtResource("14_rh4lt")
 
