@@ -17,6 +17,7 @@ func unalive():
 	else:
 		AudioManager.play_sfx(failsfx)
 		Global._solderDecrease(2)
+		Global._missExpression()
 func _process(_delta):
 	if is_instance_valid(get_parent().whospawnedme):
 		if get_parent().whospawnedme.dead == true:

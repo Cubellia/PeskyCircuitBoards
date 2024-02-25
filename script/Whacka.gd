@@ -26,6 +26,7 @@ func _ready():
 	Global.spawnEnemy.connect(_spawnEnemy)
 	Global.solderDecrease.connect(_solderDecrease)
 	Global.scoreIncrease.connect(_scoreIncrease)
+	Global.missExpression.connect(_failExpression)
 func _solderDecrease(amt):
 	if solder.value-amt<=0:
 		_gameOver()
@@ -95,18 +96,21 @@ func _unhandled_input(event):
 								jitterTween.tween_property($Bkg/Chara, "position", Vector2(-2, -1), jitterSpeed).set_trans(Tween.TRANS_LINEAR)
 								jitterTween.set_loops(2)
 								jitterTween.tween_property($Bkg/Chara, "position", Vector2(0, -1), jitterSpeed) .set_trans(Tween.TRANS_LINEAR) 
-								character.find_child("FacePlayer").seek(0.0)
-								character.find_child("FacePlayer").play("Failure")
-								character.find_child("GogglePlayer").seek(0.0)
-								character.find_child("GogglePlayer").play("Solder")
-								
+	
+								_failExpression()
 								#character.find_child("face").frame = 4
 								#sfx.play(0.0)
 								AudioManager.play_sfx(sfx_neutral)
 								_solderDecrease(1)
 
 
-						
+
+func _failExpression():
+	character.find_child("FacePlayer").seek(0.0)
+	character.find_child("FacePlayer").play("Failure")
+	character.find_child("GogglePlayer").seek(0.0)
+	character.find_child("GogglePlayer").play("Solder")
+
 #func _process(delta):
 func _reloadgame():
 	get_tree().paused=false

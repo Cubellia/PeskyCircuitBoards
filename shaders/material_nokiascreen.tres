@@ -14,5 +14,5 @@ shader_parameter/border_size = -1609.21
 shader_parameter/enable_dot_matrix = true
 shader_parameter/glare_amount = -0.048
 shader_parameter/brightness = 0.0
-shader_parameter/pixel_shadow_amount = 0.563
-shader_parameter/lcd_dark_square_transparency = 0.07
+shader_parameter/pixel_shadow_amount = 0.166
+shader_parameter/lcd_dark_square_transparency = 0.05

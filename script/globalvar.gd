@@ -8,6 +8,8 @@ signal spawnEnemy(w,origin)
 signal scoreIncrease(amt)
 signal solderDecrease(amt)
 
+signal missExpression
+
 func _spawnEnemy(who,fromwho):
 	spawnEnemy.emit(who,fromwho)
 
@@ -16,3 +18,6 @@ func _scoreIncrease(amt):
 	
 func _solderDecrease(amt):
 	solderDecrease.emit(amt)
+
+func _missExpression():
+	missExpression.emit()
