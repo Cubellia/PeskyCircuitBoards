@@ -43,65 +43,66 @@ func _unhandled_input(event):
 					if InputMap.action_has_event(action, event):
 						##isolate the number of the nokia keypad key, and ignore the irrelevant ones
 						var k = action.split('_')[1];
-						if not k=="0" && not k=="#"&&not k=="*":
-							$SolderDepleter.start()#reset the solder depleter timer if the player isnt inactive
-							#get the active column for the eyes to look at
-							var zof = 6
-							if int(k)<=3:
-								zof=6
-							elif int(k)>=4 && int(k)<=6:
-								zof = 8
-							else:
-								zof=10
-							iron.z_index=zof
-							var column = (int(k)-1)%3
-							#print(column)
-							character.find_child("face").frame=column
-							
-							##find the square based on the input key and make the human stab it
-							var square = slots.find_child("square"+k)
-							iron.global_position=square.global_position
-							iron.find_child("AnimationPlayer").seek(0.0)
-							iron.find_child("AnimationPlayer").play("poke")
-							
-							iron.find_child("Shadow").play("default")
-							character.find_child("GogglePlayer").seek(0.0)
-							character.find_child("GogglePlayer").play("RESET")
-							
-							##check to see if the square has an enemy on it
-							if square.get_child_count()>0:
-								if not square.get_child(0).dead: ##if the enemy is alive
-									
+						if  action.contains("nokia"):
+							if not k=="0" && not k=="#"&&not k=="*":
+								$SolderDepleter.start()#reset the solder depleter timer if the player isnt inactive
+								#get the active column for the eyes to look at
+								var zof = 6
+								if int(k)<=3:
+									zof=6
+								elif int(k)>=4 && int(k)<=6:
+									zof = 8
+								else:
+									zof=10
+								iron.z_index=zof
+								var column = (int(k)-1)%3
+								#print(column)
+								character.find_child("face").frame=column
 								
-									#sfx.stream=sfx_good
-									character.find_child("FacePlayer").seek(0.0)
-									character.find_child("FacePlayer").play("Success")
-									#character.find_child("face").frame = 3
-									#sfx.play(0.0)
-									AudioManager.play_sfx(sfx_good)
-									square.get_child(0).unalive()
+								##find the square based on the input key and make the human stab it
+								var square = slots.find_child("square"+k)
+								iron.global_position=square.global_position
+								iron.find_child("AnimationPlayer").seek(0.0)
+								iron.find_child("AnimationPlayer").play("poke")
+								
+								iron.find_child("Shadow").play("default")
+								character.find_child("GogglePlayer").seek(0.0)
+								character.find_child("GogglePlayer").play("RESET")
+								
+								##check to see if the square has an enemy on it
+								if square.get_child_count()>0:
+									if not square.get_child(0).dead: ##if the enemy is alive
+										
 									
-									#THIS IS TEMPORARY? until we add health packs or smth?
-									solder.value+=1
-								else:  ##if the enemy is dead already
+										#sfx.stream=sfx_good
+										character.find_child("FacePlayer").seek(0.0)
+										character.find_child("FacePlayer").play("Success")
+										#character.find_child("face").frame = 3
+										#sfx.play(0.0)
+										AudioManager.play_sfx(sfx_good)
+										square.get_child(0).unalive()
+										
+										#THIS IS TEMPORARY? until we add health packs or smth?
+										solder.value+=1
+									else:  ##if the enemy is dead already
+										_solderDecrease(1)
+								
+								
+								else:  ##if there is nothing on the square
+									###PLAYER FAIL STATE###
+									#sfx.stream=sfx_neutral
+									if jitterTween:
+										jitterTween.kill() #Aborts previous anim
+									jitterTween = get_tree().create_tween()
+									jitterTween.tween_property($Bkg/Chara, "position", Vector2(-2, -1), jitterSpeed).set_trans(Tween.TRANS_LINEAR)
+									jitterTween.set_loops(2)
+									jitterTween.tween_property($Bkg/Chara, "position", Vector2(0, -1), jitterSpeed) .set_trans(Tween.TRANS_LINEAR) 
+		
+									_failExpression()
+									#character.find_child("face").frame = 4
+									#sfx.play(0.0)
+									AudioManager.play_sfx(sfx_neutral)
 									_solderDecrease(1)
-							
-							
-							else:  ##if there is nothing on the square
-								###PLAYER FAIL STATE###
-								#sfx.stream=sfx_neutral
-								if jitterTween:
-									jitterTween.kill() #Aborts previous anim
-								jitterTween = get_tree().create_tween()
-								jitterTween.tween_property($Bkg/Chara, "position", Vector2(-2, -1), jitterSpeed).set_trans(Tween.TRANS_LINEAR)
-								jitterTween.set_loops(2)
-								jitterTween.tween_property($Bkg/Chara, "position", Vector2(0, -1), jitterSpeed) .set_trans(Tween.TRANS_LINEAR) 
-	
-								_failExpression()
-								#character.find_child("face").frame = 4
-								#sfx.play(0.0)
-								AudioManager.play_sfx(sfx_neutral)
-								_solderDecrease(1)
 
 
 
