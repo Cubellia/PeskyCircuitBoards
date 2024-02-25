@@ -5,8 +5,10 @@ func activate():
 	get_child(0).start()
 
 func _on_timer_timeout():
+	Global._spawnEnemy(0,get_parent())
 	Global.board_occupancy-=1
 	get_parent().queue_free()
+	
 	
 func unalive():
 	get_parent().dead=true

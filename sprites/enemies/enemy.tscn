@@ -415,7 +415,7 @@ animations = [{
 [node name="enemy" type="Node2D" node_paths=PackedStringArray("validEnemies")]
 texture_filter = 1
 script = ExtResource("1_mulhl")
-validEnemies = [NodePath("enemy_cappytan"), NodePath("enemy_switch"), NodePath("enemy_IC"), NodePath("resistor_R"), NodePath("resistor_R")]
+validEnemies = [NodePath("enemy_cappytan"), NodePath("enemy_switch"), NodePath("enemy_IC"), NodePath("resistor_R")]
 
 [node name="enemy_cappytan" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -533,7 +533,7 @@ material = SubResource("ShaderMaterial_62oh8")
 position = Vector2(-9, 5)
 sprite_frames = SubResource("SpriteFrames_dop23")
 autoplay = "default"
-frame_progress = 0.202181
+frame_progress = 0.0164986
 offset = Vector2(2.765, -10)
 script = ExtResource("14_rh4lt")
 

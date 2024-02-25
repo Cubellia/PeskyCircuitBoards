@@ -20,6 +20,11 @@ func pickType(rng:int,location:Vector2,bypass:bool=false):
 	enemyType.activate()
 	whoami=enemyType
 	whereami=location
+	
+func move_adjacent():
+	var thissquare=int(get_parent().name.split("square")[1])
+	#get_parent().get_parent().
+
 func unalive():
 	whoami.unalive()
 

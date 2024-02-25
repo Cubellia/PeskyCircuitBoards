@@ -21,3 +21,15 @@ func _solderDecrease(amt):
 
 func _missExpression():
 	missExpression.emit()
+
+func keyPosition(key):
+	match key:
+		0: return Vector2(1,3)
+		1: return Vector2(2,3)
+		2: return Vector2(3,3)
+		3: return Vector2(1,2)
+		4: return Vector2(2,2)
+		5: return Vector2(3,2)
+		6: return Vector2(1,1)
+		7: return Vector2(1,2)
+		8: return Vector2(1,1)

@@ -1,12 +1,15 @@
 extends AnimatedSprite2D
 
+
 func activate():
-	pass
-	#print("activated IC")
+	get_child(0).paused=false
+	get_child(0).start()
 
 func _on_timer_timeout():
+	Global._spawnEnemy(4,get_parent()) #replace self (faking movement)
 	Global.board_occupancy-=1
 	get_parent().queue_free()
+	
 func unalive():
 	get_parent().dead=true
 	$"../smushed".start()
