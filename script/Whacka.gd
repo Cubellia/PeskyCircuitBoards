@@ -38,7 +38,8 @@ func _scoreIncrease(amt):
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed:
-			if(event.as_text_key_label().contains("Kp ")&&get_tree().paused==false):
+			##event.as_text_key_label().contains("Kp ")&& went below but then i decided to support 345ertdfgcvb too
+			if(get_tree().paused==false):
 				for action in InputMap.get_actions():#this is absolutely disgusting. do i really have to???? ffs
 					if InputMap.action_has_event(action, event):
 						##isolate the number of the nokia keypad key, and ignore the irrelevant ones
