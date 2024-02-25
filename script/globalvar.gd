@@ -31,5 +31,18 @@ func keyPosition(key):
 		4: return Vector2(2,2)
 		5: return Vector2(3,2)
 		6: return Vector2(1,1)
-		7: return Vector2(1,2)
-		8: return Vector2(1,1)
+		7: return Vector2(2,1)
+		8: return Vector2(3,1)
+
+func v2Position(v2:Vector2):
+	match v2:
+		Vector2(1,3): return 0
+		Vector2(2,3): return 1
+		Vector2(3,3): return 2
+		Vector2(1,2): return 3
+		Vector2(2,2): return 4
+		Vector2(3,2): return 5
+		Vector2(1,1): return 6
+		Vector2(2,1): return 7
+		Vector2(3,1): return 8
+		

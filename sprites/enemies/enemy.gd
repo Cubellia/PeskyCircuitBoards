@@ -17,13 +17,12 @@ func pickType(rng:int,location:Vector2,bypass:bool=false):
 		while not enemyType in validEnemies:
 		#	rngo=(rngo+1)%(validEnemies.size()+1)
 			rngo=(rngo+1)%(get_child_count())
-			print("iterate"+str( rngo))
+			#print("iterate"+str( rngo))
 			enemyType=get_child(rngo)
 	enemyType.visible=true
-	enemyType.activate()
 	whoami=enemyType
 	whereami=location
-	
+	enemyType.activate()
 func move_adjacent():
 	var thissquare=int(get_parent().name.split("square")[1])
 	#get_parent().get_parent().

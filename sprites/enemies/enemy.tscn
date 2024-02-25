@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://h2w1db8k8vv2"]
+[gd_scene load_steps=63 format=3 uid="uid://h2w1db8k8vv2"]
 
 [ext_resource type="Script" path="res://sprites/enemies/enemy.gd" id="1_mulhl"]
 [ext_resource type="Shader" path="res://shaders/pixeloutline.gdshader" id="2_s7llg"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bh4gjxshl6coq" path="res://sprites/enemies/resistor/resistorR.png" id="15_l8opo"]
 [ext_resource type="Texture2D" uid="uid://cyy2jctaoxt2f" path="res://sprites/enemies/resistor/resistorL.png" id="16_afnbq"]
 [ext_resource type="Script" path="res://sprites/enemies/resistor_R.gd" id="16_vsrky"]
+[ext_resource type="Script" path="res://sprites/enemies/resistor_L.gd" id="17_ch3l3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6fhtm"]
 resource_local_to_scene = true
@@ -310,10 +311,6 @@ shader_parameter/start_frame = 0
 shader_parameter/current_frame = 0
 shader_parameter/mix_ratio = 0.405
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nlscl"]
-atlas = ExtResource("15_l8opo")
-region = Rect2(0, 0, 25, 18)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_cpnlt"]
 atlas = ExtResource("15_l8opo")
 region = Rect2(50, 0, 25, 18)
@@ -321,6 +318,10 @@ region = Rect2(50, 0, 25, 18)
 [sub_resource type="AtlasTexture" id="AtlasTexture_duuos"]
 atlas = ExtResource("15_l8opo")
 region = Rect2(125, 0, 25, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlscl"]
+atlas = ExtResource("15_l8opo")
+region = Rect2(0, 0, 25, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dkcc4"]
 atlas = ExtResource("15_l8opo")
@@ -330,9 +331,6 @@ region = Rect2(150, 0, 25, 18)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nlscl")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_cpnlt")
 }, {
 "duration": 1.0,
@@ -340,6 +338,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cpnlt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlscl")
 }],
 "loop": true,
 "name": &"default",
@@ -368,10 +369,6 @@ shader_parameter/start_frame = 0
 shader_parameter/current_frame = 0
 shader_parameter/mix_ratio = 0.405
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3y6xp"]
-atlas = ExtResource("16_afnbq")
-region = Rect2(0, 0, 21, 18)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_eg6gr"]
 atlas = ExtResource("16_afnbq")
 region = Rect2(42, 0, 21, 18)
@@ -379,6 +376,10 @@ region = Rect2(42, 0, 21, 18)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tserf"]
 atlas = ExtResource("16_afnbq")
 region = Rect2(105, 0, 21, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y6xp"]
+atlas = ExtResource("16_afnbq")
+region = Rect2(0, 0, 21, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sn01o"]
 atlas = ExtResource("16_afnbq")
@@ -388,9 +389,6 @@ region = Rect2(126, 0, 21, 18)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3y6xp")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_eg6gr")
 }, {
 "duration": 1.0,
@@ -398,6 +396,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eg6gr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y6xp")
 }],
 "loop": true,
 "name": &"default",
@@ -415,7 +416,7 @@ animations = [{
 [node name="enemy" type="Node2D" node_paths=PackedStringArray("validEnemies")]
 texture_filter = 1
 script = ExtResource("1_mulhl")
-validEnemies = [NodePath("enemy_cappytan"), NodePath("enemy_switch"), NodePath("enemy_IC"), NodePath("resistor_R")]
+validEnemies = [NodePath("enemy_cappytan"), NodePath("enemy_resistor_R"), NodePath("enemy_switch"), NodePath("enemy_IC")]
 
 [node name="enemy_cappytan" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -512,10 +513,10 @@ script = ExtResource("14_rh4lt")
 wait_time = 0.7
 one_shot = true
 
-[node name="resistor_R" type="AnimatedSprite2D" parent="."]
+[node name="enemy_resistor_R" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_5agjk")
-position = Vector2(6, 5)
+position = Vector2(-2, 5)
 sprite_frames = SubResource("SpriteFrames_3e2am")
 autoplay = "default"
 frame = 1
@@ -523,21 +524,21 @@ frame_progress = 0.576808
 offset = Vector2(2.765, -10)
 script = ExtResource("16_vsrky")
 
-[node name="Timer" type="Timer" parent="resistor_R"]
+[node name="Timer" type="Timer" parent="enemy_resistor_R"]
 wait_time = 0.7
 one_shot = true
 
-[node name="resistor_L" type="AnimatedSprite2D" parent="."]
+[node name="enemy_resistor_L" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_62oh8")
-position = Vector2(-9, 5)
+position = Vector2(0, 5)
 sprite_frames = SubResource("SpriteFrames_dop23")
 autoplay = "default"
-frame_progress = 0.536269
+frame_progress = 0.898929
 offset = Vector2(2.765, -10)
-script = ExtResource("14_rh4lt")
+script = ExtResource("17_ch3l3")
 
-[node name="Timer" type="Timer" parent="resistor_L"]
+[node name="Timer" type="Timer" parent="enemy_resistor_L"]
 wait_time = 0.7
 one_shot = true
 
@@ -552,6 +553,6 @@ one_shot = true
 [connection signal="timeout" from="enemy_IC2/Timer" to="enemy_IC2" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC3a/Timer" to="enemy_IC3a" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_ICb/Timer" to="enemy_ICb" method="_on_timer_timeout"]
-[connection signal="timeout" from="resistor_R/Timer" to="resistor_R" method="_on_timer_timeout"]
-[connection signal="timeout" from="resistor_L/Timer" to="resistor_L" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_resistor_R/Timer" to="enemy_resistor_R" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_resistor_L/Timer" to="enemy_resistor_L" method="_on_timer_timeout"]
 [connection signal="timeout" from="smushed" to="." method="_on_smushed_timeout"]
