@@ -475,7 +475,7 @@ one_shot = true
 [node name="enemy_IC2" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-3, 4)
+position = Vector2(-2, 7)
 sprite_frames = SubResource("SpriteFrames_ykd0p")
 animation = &"unalive"
 autoplay = "default"
@@ -489,7 +489,7 @@ one_shot = true
 [node name="enemy_IC3a" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-1, 4)
+position = Vector2(-2, 8)
 sprite_frames = SubResource("SpriteFrames_en6j1")
 autoplay = "default"
 offset = Vector2(2.765, -10)
@@ -502,7 +502,7 @@ one_shot = true
 [node name="enemy_ICb" type="AnimatedSprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-1, 4)
+position = Vector2(-1, 8)
 sprite_frames = SubResource("SpriteFrames_6e5sf")
 animation = &"unalive"
 autoplay = "default"

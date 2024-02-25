@@ -145,6 +145,7 @@ func _reloadgame():
 	print("reload game")
 	$MenuAnim.play("RESET")
 	$SpawnTime.paused=false
+	$SpawnTime.start()
 	#$Music.stream=music_main
 	#$Music.play()
 	AudioManager.play_music(music_main)
@@ -154,6 +155,7 @@ func _gameOver():
 	#$Music.stream=music_gameOver
 	#$Music.play()
 	AudioManager.play_music(music_gameOver)
+	AudioManager.play_sfx(music_gameOver)
 	$GameOver/FinalScore.text="Score: "+score.text
 	print("YOU lOSE")
 
