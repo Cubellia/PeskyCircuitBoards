@@ -1,8 +1,21 @@
 extends AnimatedSprite2D
 
+var daddy
+
 func activate():
-	pass
-	#print("activated IC")
+	daddy=get_parent().whospawnedme
+	#teleport to square next to daddy
+	
+func _process(_delta):
+	if is_instance_valid(get_parent().whospawnedme):
+		if get_parent().whospawnedme.dead == true:
+		#	touchable = true
+		#	animation="default_vulnerable"
+			set_process(false)
+	else:
+	#	touchable=true
+	#	animation="default_vulnerable"
+		set_process(false)
 
 func _on_timer_timeout():
 	Global.board_occupancy-=1

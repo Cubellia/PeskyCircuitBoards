@@ -2,11 +2,29 @@ extends AnimatedSprite2D
 
 var touched = false
 
+var son
+
 func activate():
+	
+	print("I AM A RESTITOR AAAAA "+str(get_parent().whereami.x) )
 	if(get_parent().whereami.x==1):
 		print("whoops nevermind")
 		get_parent().queue_free()
-	Global._spawnEnemy(8,get_parent())
+	else:
+		Global._spawnEnemy(8,get_parent())
+
+#func _process(_delta):
+	#if son !=null:
+		#if is_instance_valid(son):
+			#if son.dead == true:
+				#touchable = true
+				#animation="default_vulnerable"
+				#set_process(false)
+		#else:
+			#touchable=true
+			#animation="default_vulnerable"
+			#set_process(false)
+
 
 func unalive():
 	if not touched:

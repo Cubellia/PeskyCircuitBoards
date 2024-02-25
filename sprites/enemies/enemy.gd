@@ -10,11 +10,14 @@ var whoami
 var whereami:Vector2
 
 func pickType(rng:int,location:Vector2,bypass:bool=false):
+	#print("want to spawn "+str(rng)+" out of "+str(get_child_count()))
 	var rngo=rng
 	var enemyType=	get_child(rng)
 	if bypass == false:
 		while not enemyType in validEnemies:
-			rngo=(rngo+1)%(validEnemies.size()+1)
+		#	rngo=(rngo+1)%(validEnemies.size()+1)
+			rngo=(rngo+1)%(get_child_count())
+			print("iterate"+str( rngo))
 			enemyType=get_child(rngo)
 	enemyType.visible=true
 	enemyType.activate()

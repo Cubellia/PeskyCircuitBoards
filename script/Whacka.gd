@@ -137,7 +137,10 @@ func _gameOver():
 	print("YOU lOSE")
 
 func _spawnEnemy(who,fromwho):
-	print ("Spawn "+str(who))
+	#print ("Spawn "+str(who))
+	for g in fromwho.get_children():
+		if g.name.contains("enemy")&&g.visible==true:
+			print(g.name)
 	if Global.board_occupancy < 8:
 		var randomtile = randi_range(0,8)
 		while slots.get_child(randomtile).get_child_count()!=0:
