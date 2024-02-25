@@ -24,9 +24,9 @@ texture = SubResource("GradientTexture2D_m4b4y")
 texture_filter = 1
 material = ExtResource("1_648pm")
 offset_left = 119.0
-offset_top = 66.0
+offset_top = 57.0
 offset_right = 203.0
-offset_bottom = 114.0
+offset_bottom = 105.0
 scale = Vector2(7, 7)
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
