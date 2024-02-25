@@ -17,7 +17,7 @@ var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
 
-var unlocked_enemies=2
+var unlocked_enemies=3
 
 
 
@@ -134,12 +134,15 @@ func _spawnEnemy(who,fromwho):
 	print ("Spawn "+str(who))
 	if Global.board_occupancy < 8:
 		var randomtile = randi_range(0,8)
-		if slots.get_child(randomtile).get_child_count()==0:
-			var e = enemy.instantiate()
-			slots.get_child(randomtile).add_child(e)
-			Global.board_occupancy+=1
-			e.pickType(who,true)
-			e.whospawnedme=fromwho
+		while slots.get_child(randomtile).get_child_count()!=0:
+			randomtile=(randomtile+1)%9
+		#if slots.get_child(randomtile).get_child_count()==0:
+		var e = enemy.instantiate() 
+		slots.get_child(randomtile).add_child(e)
+		Global.board_occupancy+=1
+		e.pickType(who,keyPosition(randomtile),true)
+		e.whospawnedme=fromwho
+			
 func _on_spawn_time_timeout():
 	if Global.board_occupancy < Global.max_board_occupancy:
 		var randomtile = randi_range(0,8)
@@ -149,11 +152,23 @@ func _on_spawn_time_timeout():
 		
 			#set self destruct timer. this cant be turned on until after its added to the tree
 			Global.board_occupancy+=1
-			e.pickType(randi_range(0,unlocked_enemies))
+			
+			e.pickType(randi_range(0,unlocked_enemies),keyPosition(randomtile))
 			e.position=Vector2.ZERO
 			
 		
-
+func keyPosition(key):
+	match key:
+		0: return Vector2(1,3)
+		1: return Vector2(2,3)
+		2: return Vector2(3,3)
+		3: return Vector2(1,2)
+		4: return Vector2(2,2)
+		5: return Vector2(3,2)
+		6: return Vector2(1,1)
+		7: return Vector2(1,2)
+		8: return Vector2(1,1)
+			
 
 func _on_solder_depleter_timeout():
 	_solderDecrease(1)

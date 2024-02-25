@@ -20,3 +20,4 @@ res://sprites/enemies/enemy_LED.gd
 res://sprites/enemies/enemy_switch.gd
 res://sprites/enemies/enemy_IC2.gd
 res://sprites/enemies/enemy_IC3.gd
+res://sprites/enemies/resistor_R.gd
