@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=56 format=3 uid="uid://jg5rjye5ums2"]
 
 [ext_resource type="Script" path="res://script/Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
 [ext_resource type="Texture2D" uid="uid://bm12k0l63tups" path="res://sprites/whackgradient.png" id="2_bgn5r"]
 [ext_resource type="Shader" path="res://shaders/scrolluv.gdshader" id="2_o1bfj"]
 [ext_resource type="Texture2D" uid="uid://dkkutq6463nr0" path="res://sprites/bkg.png" id="3_0jqva"]
-[ext_resource type="FontFile" uid="uid://divi2ldtbbnx7" path="res://data/fonts/teeny-tiny-pixls-font/TeenyTinyPixls-o2zo.ttf" id="4_apdy3"]
 [ext_resource type="FontFile" uid="uid://4n22m1rx4rvv" path="res://ui/EffortsPro.ttf" id="7_v38np"]
 [ext_resource type="Shader" path="res://shaders/pixeloutline.gdshader" id="8_aoadn"]
 [ext_resource type="Texture2D" uid="uid://bxkp4lt0kq0bs" path="res://sprites/iron.png" id="8_dm0h5"]
@@ -17,7 +16,11 @@
 [ext_resource type="FontFile" uid="uid://dydcn410cfqqg" path="res://data/fonts/FFFFORWA.TTF" id="14_0n2ft"]
 [ext_resource type="Script" path="res://script/RestartGame.gd" id="14_ixj24"]
 [ext_resource type="Texture2D" uid="uid://dd2rgfpbb26v3" path="res://sprites/human/faceNeut.png" id="17_lunoc"]
+[ext_resource type="Texture2D" uid="uid://b2scrbseprcth" path="res://sprites/human/peskycircuitboard_endscreens_cleanedup.png" id="17_lvuws"]
+[ext_resource type="Texture2D" uid="uid://00gpdr01p2o8" path="res://ui/endscreenTextBKG.png" id="18_1rxnq"]
+[ext_resource type="FontFile" uid="uid://d0maa2yigx1nc" path="res://ui/Pocket.ttf" id="18_dg6uq"]
 [ext_resource type="Texture2D" uid="uid://cjmn3jyab0heu" path="res://sprites/human/facegog.png" id="18_mik5q"]
+[ext_resource type="Shader" path="res://TRYAGAIN.gdshader" id="21_5smfp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uir7o"]
 shader = ExtResource("2_o1bfj")
@@ -298,8 +301,91 @@ animations = [{
 "speed": 11.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppadm"]
+atlas = ExtResource("17_lvuws")
+region = Rect2(0, 0, 84, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1i7wp"]
+atlas = ExtResource("17_lvuws")
+region = Rect2(0, 0, 84, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjws4"]
+atlas = ExtResource("17_lvuws")
+region = Rect2(84, 0, 84, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2up6a"]
+atlas = ExtResource("17_lvuws")
+region = Rect2(168, 0, 84, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rv87"]
+atlas = ExtResource("17_lvuws")
+region = Rect2(252, 0, 84, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w81d4"]
+atlas = ExtResource("17_lvuws")
+region = Rect2(336, 0, 84, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2vym"]
+atlas = ExtResource("17_lvuws")
+region = Rect2(420, 0, 84, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fce2a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppadm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1i7wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjws4")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_2up6a")
+}],
+"loop": true,
+"name": &"ready",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_4rv87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w81d4")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_t2vym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w81d4")
+}],
+"loop": true,
+"name": &"snooze",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xneeu"]
+shader = ExtResource("21_5smfp")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 0.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = true
+shader_parameter/flashSpeed = 1.0
+shader_parameter/start_frame = 1
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 1.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qtjbw"]
-shader = ExtResource("8_aoadn")
+shader = ExtResource("21_5smfp")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/width = 0.0
 shader_parameter/pattern = 0
@@ -545,7 +631,27 @@ offset_right = 84.0
 offset_bottom = -12.0
 script = ExtResource("14_ixj24")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameOver"]
+process_mode = 3
+sprite_frames = SubResource("SpriteFrames_fce2a")
+animation = &"snooze"
+autoplay = "default"
+frame_progress = 0.634161
+centered = false
+
+[node name="NinePatchRect" type="NinePatchRect" parent="GameOver"]
+layout_mode = 0
+offset_top = 43.0
+offset_right = 84.0
+offset_bottom = 49.0
+texture = ExtResource("18_1rxnq")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
 [node name="game over" type="Label" parent="GameOver"]
+visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = 18.0
@@ -557,26 +663,51 @@ theme_override_font_sizes/font_size = 8
 text = "GAME OVER"
 
 [node name="try again" type="Label" parent="GameOver"]
+material = SubResource("ShaderMaterial_xneeu")
+layout_mode = 0
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 104.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
+theme_override_fonts/font = ExtResource("18_dg6uq")
+theme_override_font_sizes/font_size = 16
+text = "TRY AGAIN-PRESS 0"
+
+[node name="FinalScore" type="Label" parent="GameOver"]
 material = SubResource("ShaderMaterial_qtjbw")
 layout_mode = 0
 offset_left = 2.0
-offset_top = 42.0
-offset_right = 104.0
-offset_bottom = 65.0
+offset_top = 37.0
+offset_right = 81.0
+offset_bottom = 60.0
 theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
-theme_override_fonts/font = ExtResource("4_apdy3")
-theme_override_font_sizes/font_size = 5
-text = "Press 0 to try again"
+theme_override_fonts/font = ExtResource("18_dg6uq")
+theme_override_font_sizes/font_size = 16
+text = "SCORE:0"
+horizontal_alignment = 1
 
-[node name="FinalScore" type="Label" parent="GameOver"]
+[node name="FinalScores" type="Label" parent="GameOver"]
+visible = false
 layout_mode = 0
-offset_top = 24.0
-offset_right = 84.0
-offset_bottom = 45.0
+offset_left = -2.0
+offset_top = 20.0
+offset_right = 82.0
+offset_bottom = 41.0
 theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
 theme_override_fonts/font = ExtResource("7_v38np")
 text = "Score: 0"
 horizontal_alignment = 1
+
+[node name="WaitForCoolFace" type="Timer" parent="GameOver"]
+one_shot = true
+
+[node name="WaitForSleepyFace" type="Timer" parent="GameOver"]
+process_mode = 3
+wait_time = 3.0
+one_shot = true
 
 [node name="MenuAnim" type="AnimationPlayer" parent="."]
 process_mode = 3
@@ -589,4 +720,6 @@ process_mode = 1
 autostart = true
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
+[connection signal="timeout" from="GameOver/WaitForCoolFace" to="GameOver" method="_on_wait_for_cool_face_timeout"]
+[connection signal="timeout" from="GameOver/WaitForSleepyFace" to="GameOver" method="_on_wait_for_sleepy_face_timeout"]
 [connection signal="timeout" from="SolderDepleter" to="." method="_on_solder_depleter_timeout"]

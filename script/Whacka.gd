@@ -11,7 +11,7 @@ var enemies = []
 var jitterTween 
 @export var jitterSpeed = 0.05
 
-var sfx_good=preload("res://sfx/good2.wav")
+var sfx_good=preload("res://sfx/hit6.wav")
 var sfx_neutral=preload("res://sfx/blip4.wav")
 var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
@@ -149,6 +149,9 @@ func _reloadgame():
 	#$Music.stream=music_main
 	#$Music.play()
 	AudioManager.play_music(music_main)
+	AudioManager.play_sfx(sfx_restart)
+	
+	
 func _gameOver():
 	get_tree().paused = true
 	$MenuAnim.play("GAMEOVER")
@@ -157,6 +160,9 @@ func _gameOver():
 	AudioManager.play_music(music_gameOver)
 	AudioManager.play_sfx(music_gameOver)
 	$GameOver/FinalScore.text="Score: "+score.text
+	$GameOver/WaitForSleepyFace.paused=false
+	$GameOver/WaitForSleepyFace.start()
+	$GameOver/AnimatedSprite2D.play("default")
 	print("YOU lOSE")
 
 func _spawnEnemy(who,fromwho):

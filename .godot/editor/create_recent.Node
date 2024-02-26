@@ -1,8 +1,10 @@
+Timer
+NinePatchRect
+Node
 Sprite2D
+AnimatedSprite2D
 TextureRect
 ColorRect
-Timer
-AnimatedSprite2D
 AnimationPlayer
 Label
 Node2D
@@ -10,5 +12,3 @@ TextureProgressBar
 ProgressBar
 AudioStreamPlayer
 TextEdit
-Control
-Node
