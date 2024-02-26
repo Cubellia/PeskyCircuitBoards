@@ -13,7 +13,8 @@ func _ready() -> void:
 	_sfx.connect("finished", Callable(self, "_on_sfx_finished"))
 	add_child(_music)
 	add_child(_sfx)
-
+	_music.process_mode=Node.PROCESS_MODE_ALWAYS
+	_sfx.process_mode=Node.PROCESS_MODE_ALWAYS
 
 func play_music(music_stream: AudioStream) -> void:
 	_music.stop()

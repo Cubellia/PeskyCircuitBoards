@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=76 format=3 uid="uid://jg5rjye5ums2"]
 
 [ext_resource type="Script" path="res://script/Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
@@ -21,6 +21,15 @@
 [ext_resource type="FontFile" uid="uid://d0maa2yigx1nc" path="res://ui/Pocket.ttf" id="18_dg6uq"]
 [ext_resource type="Texture2D" uid="uid://cjmn3jyab0heu" path="res://sprites/human/facegog.png" id="18_mik5q"]
 [ext_resource type="Shader" path="res://TRYAGAIN.gdshader" id="21_5smfp"]
+[ext_resource type="Texture2D" uid="uid://bsvk21bur1spv" path="res://sprites/human/FLUX_IntroScreen.png" id="22_p5j88"]
+[ext_resource type="SpriteFrames" uid="uid://bd1338j47q3tl" path="res://sprites/enemies/cappy tan/cappysprite.tres" id="23_tk3yr"]
+[ext_resource type="SpriteFrames" uid="uid://cpr05qcjq4u0c" path="res://sprites/enemies/IC/icsprite.tres" id="24_5pxjx"]
+[ext_resource type="SpriteFrames" uid="uid://by17mulr1l1gl" path="res://sprites/enemies/IC/ic2sprite.tres" id="25_jsu1c"]
+[ext_resource type="SpriteFrames" uid="uid://bg4sqc5ce4kuy" path="res://sprites/enemies/IC/ic3sprite.tres" id="26_m5th0"]
+[ext_resource type="SpriteFrames" uid="uid://cuhbkorjvll4e" path="res://sprites/enemies/IC/ic3bsprite.tres" id="27_m2503"]
+[ext_resource type="SpriteFrames" uid="uid://c1j2bi7hqp8gm" path="res://sprites/enemies/Switch/switchsprite.tres" id="28_7c608"]
+[ext_resource type="SpriteFrames" uid="uid://0c6l8xgbqeri" path="res://sprites/enemies/LED/ledsprite.tres" id="29_pgcrb"]
+[ext_resource type="Texture2D" uid="uid://ey5g4pt2eand" path="res://sprites/enemies/resistor/resistor.png" id="30_7w4tg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uir7o"]
 shader = ExtResource("2_o1bfj")
@@ -433,6 +442,179 @@ _data = {
 "RESET": SubResource("Animation_uf130")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gli1"]
+atlas = ExtResource("22_p5j88")
+region = Rect2(116, 0, 58, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daj4j"]
+atlas = ExtResource("22_p5j88")
+region = Rect2(174, 0, 58, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30lpk"]
+atlas = ExtResource("22_p5j88")
+region = Rect2(232, 0, 58, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_713ae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gli1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daj4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30lpk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daj4j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nqp0"]
+atlas = ExtResource("30_7w4tg")
+region = Rect2(0, 0, 36, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jomg"]
+atlas = ExtResource("30_7w4tg")
+region = Rect2(72, 0, 36, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvkof"]
+atlas = ExtResource("30_7w4tg")
+region = Rect2(180, 0, 36, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iy48l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jomg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvkof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jomg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_h6so4"]
+resource_name = "TitleIntro"
+length = 22.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fakeenemygroup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7, 13.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(100, 0), Vector2(-84, 0), Vector2(200, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fakeenemygroup:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(-1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("flux_chibi:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(10.2, 15.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-29, 26), Vector2(116, 26)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2j21v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fakeenemygroup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fakeenemygroup:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("flux_chibi:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-29, 26)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 58)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_or014"]
+_data = {
+"RESET": SubResource("Animation_2j21v"),
+"TitleIntro": SubResource("Animation_h6so4")
+}
+
 [node name="PeskyGame" type="Node2D" node_paths=PackedStringArray("slots", "iron", "sfx", "score", "solder", "character")]
 process_mode = 3
 texture_filter = 1
@@ -636,7 +818,7 @@ process_mode = 3
 sprite_frames = SubResource("SpriteFrames_fce2a")
 animation = &"snooze"
 autoplay = "default"
-frame_progress = 0.634161
+frame_progress = 0.982902
 centered = false
 
 [node name="NinePatchRect" type="NinePatchRect" parent="GameOver"]
@@ -718,6 +900,77 @@ libraries = {
 [node name="SolderDepleter" type="Timer" parent="."]
 process_mode = 1
 autostart = true
+
+[node name="TitleScreen" type="ColorRect" parent="."]
+process_mode = 3
+top_level = true
+z_index = 666
+z_as_relative = false
+texture_filter = 1
+offset_top = 58.0
+offset_right = 84.0
+offset_bottom = 106.0
+
+[node name="flux_chibi" type="AnimatedSprite2D" parent="TitleScreen"]
+position = Vector2(-29, 26)
+sprite_frames = SubResource("SpriteFrames_713ae")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.426293
+
+[node name="fakeenemygroup" type="Node2D" parent="TitleScreen"]
+position = Vector2(100, 0)
+
+[node name="fake_cappy" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(-12, 21)
+sprite_frames = ExtResource("23_tk3yr")
+autoplay = "default"
+frame_progress = 0.71042
+centered = false
+
+[node name="fake_IC" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(65, 37)
+sprite_frames = ExtResource("24_5pxjx")
+autoplay = "default"
+frame_progress = 0.599518
+
+[node name="fake_IC2" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(22, 39)
+sprite_frames = ExtResource("25_jsu1c")
+autoplay = "default"
+frame_progress = 0.199953
+
+[node name="fake_IC3" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(73, 22)
+sprite_frames = ExtResource("26_m5th0")
+
+[node name="fake_IC4" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(33, 25)
+sprite_frames = ExtResource("27_m2503")
+
+[node name="fake_switch" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(54, 14)
+sprite_frames = ExtResource("28_7c608")
+autoplay = "default"
+frame_progress = 0.283694
+flip_h = true
+
+[node name="fake_LED" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(15, 23)
+sprite_frames = ExtResource("29_pgcrb")
+autoplay = "default"
+frame_progress = 0.412492
+
+[node name="fake_resistor" type="AnimatedSprite2D" parent="TitleScreen/fakeenemygroup"]
+position = Vector2(31, 7)
+sprite_frames = SubResource("SpriteFrames_iy48l")
+autoplay = "default"
+frame_progress = 0.371291
+
+[node name="TitleAnim" type="AnimationPlayer" parent="TitleScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_or014")
+}
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
 [connection signal="timeout" from="GameOver/WaitForCoolFace" to="GameOver" method="_on_wait_for_cool_face_timeout"]

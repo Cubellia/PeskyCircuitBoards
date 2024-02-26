@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://0c6l8xgbqeri"]
+
+[ext_resource type="Texture2D" uid="uid://b34lgdot0w45b" path="res://sprites/enemies/LED/led.png" id="1_58gxp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1lmy"]
+atlas = ExtResource("1_58gxp")
+region = Rect2(26, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhe4t"]
+atlas = ExtResource("1_58gxp")
+region = Rect2(78, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br7q0"]
+atlas = ExtResource("1_58gxp")
+region = Rect2(104, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83opk"]
+atlas = ExtResource("1_58gxp")
+region = Rect2(78, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjot4"]
+atlas = ExtResource("1_58gxp")
+region = Rect2(130, 0, 26, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dka2j"]
+atlas = ExtResource("1_58gxp")
+region = Rect2(156, 0, 26, 23)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1lmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhe4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br7q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83opk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjot4")
+}],
+"loop": true,
+"name": &"default_vulnerable",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dka2j")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]

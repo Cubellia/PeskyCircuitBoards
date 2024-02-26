@@ -25,3 +25,4 @@ res://shaders/material_nokiascreen.tres
 res://sprites/enemies/resistor_L.gd
 res://TRYAGAIN.gdshader
 res://script/RestartGame.gd
+res://data/autoload/AudioManager.gd

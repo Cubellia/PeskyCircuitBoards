@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cuhbkorjvll4e"]
+
+[ext_resource type="Texture2D" uid="uid://cxbaxws1jisf8" path="res://sprites/enemies/IC/IC_small.png" id="1_jh3om"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wge6c"]
+atlas = ExtResource("1_jh3om")
+region = Rect2(13, 0, 13, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u668b"]
+atlas = ExtResource("1_jh3om")
+region = Rect2(13, 0, 13, 11)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wge6c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u668b")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]

@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://c1j2bi7hqp8gm"]
+
+[ext_resource type="Texture2D" uid="uid://bmbguloghrdyv" path="res://sprites/enemies/Switch/switch.png" id="1_h51bs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moo0i"]
+atlas = ExtResource("1_h51bs")
+region = Rect2(0, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt3ve"]
+atlas = ExtResource("1_h51bs")
+region = Rect2(24, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w25v"]
+atlas = ExtResource("1_h51bs")
+region = Rect2(48, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a1sc"]
+atlas = ExtResource("1_h51bs")
+region = Rect2(72, 0, 24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5pgg"]
+atlas = ExtResource("1_h51bs")
+region = Rect2(96, 0, 24, 30)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_moo0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt3ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w25v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0a1sc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5pgg")
+}],
+"loop": true,
+"name": &"unalive",
+"speed": 5.0
+}]

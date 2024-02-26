@@ -6,11 +6,13 @@ extends Node2D
 @export var score:Label
 @export var solder:TextureProgressBar
 @export var character:Node2D
+
+
 var enemy = preload("res://sprites/enemies/enemy.tscn")
 var enemies = []
 var jitterTween 
 @export var jitterSpeed = 0.05
-
+var music_title =preload("res://music/titlescreenmayb.mp3")
 var sfx_good=preload("res://sfx/hit6.wav")
 var sfx_neutral=preload("res://sfx/blip4.wav")
 var music_gameOver=preload("res://music/negative1.wav")
@@ -20,7 +22,9 @@ var sfx_restart=preload("res://sfx/good3.wav")
 var unlocked_enemies=4
 
 func _ready():
-	AudioManager.play_music(music_main)
+	AudioManager.play_music(music_title)
+	$TitleScreen/TitleAnim.play("TitleIntro" )
+	get_tree().paused = true
 	Global.spawnEnemy.connect(_spawnEnemy)
 	Global.solderDecrease.connect(_solderDecrease)
 	Global.scoreIncrease.connect(_scoreIncrease)
