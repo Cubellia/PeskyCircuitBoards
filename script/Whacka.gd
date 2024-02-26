@@ -19,8 +19,13 @@ var music_gameOver=preload("res://music/negative1.wav")
 var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
 
-var unlocked_enemies=4
+var title=true
 
+var unlocked_enemies=4
+func readyGame():
+	title=false
+	$TitleScreen/TitleAnim.play("reset")
+	_reloadgame()
 func _ready():
 	AudioManager.play_music(music_title)
 	$TitleScreen/TitleAnim.play("TitleIntro" )
@@ -38,6 +43,13 @@ func _scoreIncrease(amt):
 	score.text=str(int(score.text)+amt)
 
 func _process(delta):
+			if title==true:
+				if Input.is_anything_pressed():
+					readyGame()
+			if title==false && get_tree().paused:
+				title = true #dont worry if this doesnt make sense by ear, im lazy
+				get_tree().paused=false
+				
 			if(get_tree().paused==false):
 				var pressed = false
 				var k=0
