@@ -10,4 +10,4 @@ func unalive():
 	$Timer.stop()
 	animation="unalive"
 	material.set_shader_parameter("flashing",true)
-
+	Global._scoreIncrease(5)

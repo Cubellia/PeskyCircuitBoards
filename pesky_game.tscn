@@ -1,10 +1,10 @@
-[gd_scene load_steps=76 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=78 format=3 uid="uid://jg5rjye5ums2"]
 
 [ext_resource type="Script" path="res://script/Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
 [ext_resource type="Texture2D" uid="uid://bm12k0l63tups" path="res://sprites/whackgradient.png" id="2_bgn5r"]
-[ext_resource type="Shader" path="res://shaders/scrolluv.gdshader" id="2_o1bfj"]
 [ext_resource type="Texture2D" uid="uid://dkkutq6463nr0" path="res://sprites/bkg.png" id="3_0jqva"]
+[ext_resource type="Material" uid="uid://82igaiieh0yd" path="res://shaders/scrollycircuit.tres" id="3_wqaii"]
 [ext_resource type="FontFile" uid="uid://4n22m1rx4rvv" path="res://ui/EffortsPro.ttf" id="7_v38np"]
 [ext_resource type="Shader" path="res://shaders/pixeloutline.gdshader" id="8_aoadn"]
 [ext_resource type="Texture2D" uid="uid://bxkp4lt0kq0bs" path="res://sprites/iron.png" id="8_dm0h5"]
@@ -21,6 +21,7 @@
 [ext_resource type="FontFile" uid="uid://d0maa2yigx1nc" path="res://ui/Pocket.ttf" id="18_dg6uq"]
 [ext_resource type="Texture2D" uid="uid://cjmn3jyab0heu" path="res://sprites/human/facegog.png" id="18_mik5q"]
 [ext_resource type="Shader" path="res://TRYAGAIN.gdshader" id="21_5smfp"]
+[ext_resource type="Script" path="res://visonstart.gd" id="22_jts5t"]
 [ext_resource type="Texture2D" uid="uid://bsvk21bur1spv" path="res://sprites/human/FLUX_IntroScreen.png" id="22_p5j88"]
 [ext_resource type="SpriteFrames" uid="uid://bd1338j47q3tl" path="res://sprites/enemies/cappy tan/cappysprite.tres" id="23_tk3yr"]
 [ext_resource type="SpriteFrames" uid="uid://cpr05qcjq4u0c" path="res://sprites/enemies/IC/icsprite.tres" id="24_5pxjx"]
@@ -30,16 +31,6 @@
 [ext_resource type="SpriteFrames" uid="uid://c1j2bi7hqp8gm" path="res://sprites/enemies/Switch/switchsprite.tres" id="28_7c608"]
 [ext_resource type="SpriteFrames" uid="uid://0c6l8xgbqeri" path="res://sprites/enemies/LED/ledsprite.tres" id="29_pgcrb"]
 [ext_resource type="Texture2D" uid="uid://ey5g4pt2eand" path="res://sprites/enemies/resistor/resistor.png" id="30_7w4tg"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uir7o"]
-shader = ExtResource("2_o1bfj")
-shader_parameter/motion = Vector2(10, 10)
-shader_parameter/scale = 1.0
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/contrast = 3.0
-shader_parameter/brightness = 1.0
-shader_parameter/graylight = 0.295
-shader_parameter/inverter = ExtResource("2_bgn5r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aoimg"]
 shader = ExtResource("8_aoadn")
@@ -309,6 +300,51 @@ animations = [{
 "name": &"default",
 "speed": 11.0
 }]
+
+[sub_resource type="Shader" id="Shader_tpxqm"]
+code = "shader_type canvas_item;
+
+uniform sampler2D inverter:filter_nearest;
+
+uniform vec2 motion = vec2(0.0);
+uniform float scale = 1.0;
+uniform vec2 offset = vec2(0.0);
+uniform float contrast : hint_range(0, 3) = 1.0;
+uniform float brightness : hint_range(-1, 1) = 0;
+uniform float graylight =0.01;
+mat4 contrastMatrix( float _contrast ){
+	float t = ( 1.0 - _contrast ) / 2.0;
+    return mat4( 
+		vec4(_contrast, 0, 0, 0),
+		vec4(0, _contrast, 0, 0),
+		vec4(0, 0, _contrast, 0),
+		vec4(t, t, t, 1));
+}
+mat4 brightnessMatrix( float _brightness ){
+    return mat4( vec4(1, 0, 0, 0),
+                 vec4(0, 1, 0, 0),
+                 vec4(0, 0, 1, 0),
+                 vec4(_brightness, _brightness, _brightness, 1));
+}
+void vertex(){
+	UV = (VERTEX + offset + TIME * motion) * TEXTURE_PIXEL_SIZE * (1.0/scale);
+}
+
+void fragment(){
+	vec4 color = texture(TEXTURE, UV);
+	vec4 gradt = texture(inverter,SCREEN_UV);
+	COLOR = vec4(abs(color.rgb-gradt.rgb), color.a) *brightnessMatrix( brightness ) * contrastMatrix( contrast )+graylight;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwwpx"]
+shader = SubResource("Shader_tpxqm")
+shader_parameter/motion = Vector2(10, 10)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/contrast = 3.0
+shader_parameter/brightness = 1.0
+shader_parameter/graylight = 0.295
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ppadm"]
 atlas = ExtResource("17_lvuws")
@@ -636,7 +672,7 @@ texture = ExtResource("2_bgn5r")
 [node name="Bkg" type="TextureRect" parent="."]
 process_mode = 1
 texture_filter = 1
-material = SubResource("ShaderMaterial_uir7o")
+material = ExtResource("3_wqaii")
 offset_right = 84.0
 offset_bottom = 48.0
 texture = ExtResource("3_0jqva")
@@ -791,7 +827,7 @@ sprite_frames = SubResource("SpriteFrames_sanny")
 centered = false
 
 [node name="SpawnTime" type="Timer" parent="."]
-process_mode = 1
+process_mode = 3
 wait_time = 0.4
 autostart = true
 
@@ -812,6 +848,14 @@ offset_top = -60.0
 offset_right = 84.0
 offset_bottom = -12.0
 script = ExtResource("14_ixj24")
+
+[node name="bkg" type="TextureRect" parent="GameOver"]
+material = SubResource("ShaderMaterial_vwwpx")
+layout_mode = 0
+offset_right = 84.0
+offset_bottom = 48.0
+texture = ExtResource("3_0jqva")
+stretch_mode = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GameOver"]
 process_mode = 3
@@ -903,6 +947,7 @@ autostart = true
 
 [node name="TitleScreen" type="ColorRect" parent="."]
 process_mode = 3
+visible = false
 top_level = true
 z_index = 666
 z_as_relative = false
@@ -910,6 +955,7 @@ texture_filter = 1
 offset_top = 58.0
 offset_right = 84.0
 offset_bottom = 106.0
+script = ExtResource("22_jts5t")
 
 [node name="flux_chibi" type="AnimatedSprite2D" parent="TitleScreen"]
 position = Vector2(-29, 26)

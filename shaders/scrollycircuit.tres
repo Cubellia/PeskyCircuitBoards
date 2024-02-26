@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://82igaiieh0yd"]
+
+[ext_resource type="Shader" path="res://shaders/scrolluv.gdshader" id="1_kfrq5"]
+[ext_resource type="Texture2D" uid="uid://bm12k0l63tups" path="res://sprites/whackgradient.png" id="2_jtxei"]
+
+[resource]
+shader = ExtResource("1_kfrq5")
+shader_parameter/motion = Vector2(10, 10)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/contrast = 3.0
+shader_parameter/brightness = 1.0
+shader_parameter/graylight = 0.295
+shader_parameter/inverter = ExtResource("2_jtxei")

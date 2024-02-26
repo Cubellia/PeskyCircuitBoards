@@ -20,12 +20,13 @@ var music_main=preload("res://music/nokia.wav")
 var sfx_restart=preload("res://sfx/good3.wav")
 
 var title=true
-
+var gameoverscreen=false
 var unlocked_enemies=4
 func readyGame():
 	title=false
-	$TitleScreen/TitleAnim.play("reset")
+	$TitleScreen/TitleAnim.play("RESET")
 	_reloadgame()
+	
 func _ready():
 	AudioManager.play_music(music_title)
 	$TitleScreen/TitleAnim.play("TitleIntro" )
@@ -46,11 +47,11 @@ func _process(delta):
 			if title==true:
 				if Input.is_anything_pressed():
 					readyGame()
-			if title==false && get_tree().paused:
-				title = true #dont worry if this doesnt make sense by ear, im lazy
-				get_tree().paused=false
+			#if title==false &&gameoverscreen==false && get_tree().paused:
+				#title = true #dont worry if this doesnt make sense by ear, im lazy
+				#get_tree().paused=false
 				
-			if(get_tree().paused==false):
+			if(title==false &&gameoverscreen==false):
 				var pressed = false
 				var k=0
 				##i feel filthy. i feel like i am yanderedev. i am not a coder. i will never be a coder. i am ashamed. i will one day stand before god for my crimes. juan help me.
@@ -151,6 +152,8 @@ func _failExpression():
 
 #func _process(delta):
 func _reloadgame():
+	title=false
+	gameoverscreen=false
 	get_tree().paused=false
 	for square in slots.get_children():
 		if square.get_child_count()>0:
@@ -158,6 +161,7 @@ func _reloadgame():
 
 	solder.value=solder.max_value
 	score.text="0"
+	Global.board_occupancy=0
 	print("reload game")
 	$MenuAnim.play("RESET")
 	$SpawnTime.paused=false
@@ -169,7 +173,9 @@ func _reloadgame():
 	
 	
 func _gameOver():
+	gameoverscreen=true
 	get_tree().paused = true
+
 	$MenuAnim.play("GAMEOVER")
 	#$Music.stream=music_gameOver
 	#$Music.play()
@@ -217,18 +223,22 @@ func _spawnEnemy(who,fromwho):
 		e.whospawnedme=fromwho
 			
 func _on_spawn_time_timeout():
-	
-	if Global.board_occupancy < Global.max_board_occupancy:
-		var randomtile = randi_range(0,8)
-		if slots.get_child(randomtile).get_child_count()==0:
-			var e = enemy.instantiate()
-			slots.get_child(randomtile).add_child(e)
+	#print("go "+str(gameoverscreen))
+	#print("title "+str(title))
+	#print("occupancy"+str( Global.board_occupancy ))
+	if gameoverscreen==false && title==false:
 		
-			#set self destruct timer. this cant be turned on until after its added to the tree
-			Global.board_occupancy+=1
+		if Global.board_occupancy < Global.max_board_occupancy:
+			var randomtile = randi_range(0,8)
+			if slots.get_child(randomtile).get_child_count()==0:
+				var e = enemy.instantiate()
+				slots.get_child(randomtile).add_child(e)
 			
-			e.pickType(randi_range(0,unlocked_enemies),Global.keyPosition(randomtile))
-			e.position=Vector2.ZERO
+				#set self destruct timer. this cant be turned on until after its added to the tree
+				Global.board_occupancy+=1
+				
+				e.pickType(randi_range(0,unlocked_enemies),Global.keyPosition(randomtile))
+				e.position=Vector2.ZERO
 
 func _on_solder_depleter_timeout():
 	_solderDecrease(1)
