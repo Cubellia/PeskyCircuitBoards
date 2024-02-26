@@ -6,7 +6,7 @@ func activate():
 	get_child(0).start()
 
 func _on_timer_timeout():
-	Global._spawnEnemy(4,get_parent()) #replace self (faking movement)
+	Global._spawnEnemy(2,get_parent()) #replace self (faking movement)
 	Global.board_occupancy-=1
 	get_parent().queue_free()
 	
@@ -17,4 +17,4 @@ func unalive():
 	animation="unalive"
 	material.set_shader_parameter("flashing",true)
 	var variant = randi_range(0,1)
-	Global._spawnEnemy(5+variant,get_parent())
+	Global._spawnEnemy(3+variant,get_parent())

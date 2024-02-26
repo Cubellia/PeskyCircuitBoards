@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://jg5rjye5ums2"]
+[gd_scene load_steps=109 format=3 uid="uid://jg5rjye5ums2"]
 
 [ext_resource type="Script" path="res://script/Whacka.gd" id="1_ri6o6"]
 [ext_resource type="Texture2D" uid="uid://eqmnmr20otn4" path="res://sprites/whackgrid.png" id="1_xtgxa"]
@@ -25,12 +25,24 @@
 [ext_resource type="Texture2D" uid="uid://bsvk21bur1spv" path="res://sprites/human/FLUX_IntroScreen.png" id="22_p5j88"]
 [ext_resource type="SpriteFrames" uid="uid://bd1338j47q3tl" path="res://sprites/enemies/cappy tan/cappysprite.tres" id="23_tk3yr"]
 [ext_resource type="SpriteFrames" uid="uid://cpr05qcjq4u0c" path="res://sprites/enemies/IC/icsprite.tres" id="24_5pxjx"]
+[ext_resource type="Texture2D" uid="uid://dcl5aqg4ahtyn" path="res://ui/title/TitleScreen_Title.png" id="24_pn0ku"]
 [ext_resource type="SpriteFrames" uid="uid://by17mulr1l1gl" path="res://sprites/enemies/IC/ic2sprite.tres" id="25_jsu1c"]
+[ext_resource type="Texture2D" uid="uid://bbceva82c8t3a" path="res://ui/title/TitleScreen_ZeroKey.png" id="25_ugcec"]
 [ext_resource type="SpriteFrames" uid="uid://bg4sqc5ce4kuy" path="res://sprites/enemies/IC/ic3sprite.tres" id="26_m5th0"]
 [ext_resource type="SpriteFrames" uid="uid://cuhbkorjvll4e" path="res://sprites/enemies/IC/ic3bsprite.tres" id="27_m2503"]
 [ext_resource type="SpriteFrames" uid="uid://c1j2bi7hqp8gm" path="res://sprites/enemies/Switch/switchsprite.tres" id="28_7c608"]
 [ext_resource type="SpriteFrames" uid="uid://0c6l8xgbqeri" path="res://sprites/enemies/LED/ledsprite.tres" id="29_pgcrb"]
 [ext_resource type="Texture2D" uid="uid://ey5g4pt2eand" path="res://sprites/enemies/resistor/resistor.png" id="30_7w4tg"]
+[ext_resource type="Texture2D" uid="uid://ci2ob0m8hi4yo" path="res://sprites/projectorscreen.png" id="32_au2dp"]
+[ext_resource type="Texture2D" uid="uid://d0ubo10i43x7e" path="res://ui/title/TitleScreen_Border.png" id="32_ben6m"]
+[ext_resource type="Texture2D" uid="uid://cq0voi7ajdx5v" path="res://sprites/enemies/IC/IC_big.png" id="33_rmtit"]
+[ext_resource type="Texture2D" uid="uid://d38o0wabxsosg" path="res://sprites/enemies/IC/IC_medium.png" id="34_kfc25"]
+[ext_resource type="Texture2D" uid="uid://ccl3xvle2kdoo" path="res://ui/title/thumbTitleScreen_Flux.png" id="34_sm50r"]
+[ext_resource type="Texture2D" uid="uid://cxbaxws1jisf8" path="res://sprites/enemies/IC/IC_small.png" id="35_o383j"]
+[ext_resource type="Texture2D" uid="uid://dbl1g42qtowpl" path="res://sprites/TransitionScreen_Arrow.png" id="36_oynlc"]
+[ext_resource type="Texture2D" uid="uid://7gc6oaofdg3e" path="res://ui/title/TitleScreen_Arrow.png" id="36_uhnp8"]
+[ext_resource type="Texture2D" uid="uid://bmbguloghrdyv" path="res://sprites/enemies/Switch/switch.png" id="37_63i0g"]
+[ext_resource type="Texture2D" uid="uid://b34lgdot0w45b" path="res://sprites/enemies/LED/led.png" id="38_bwalh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aoimg"]
 shader = ExtResource("8_aoadn")
@@ -194,6 +206,81 @@ _data = {
 "Failure": SubResource("Animation_yrg22"),
 "RESET": SubResource("Animation_yhqav"),
 "Success": SubResource("Animation_pko38")
+}
+
+[sub_resource type="Animation" id="Animation_06f5c"]
+resource_name = "fall"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.349312, 0.375868, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 0), Vector2(0, -2), Vector2(0, 0), Vector2(0, 33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.718421),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawntimergo"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_crug1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ioak"]
+_data = {
+"RESET": SubResource("Animation_crug1"),
+"fall": SubResource("Animation_06f5c")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_febxi"]
@@ -478,6 +565,22 @@ _data = {
 "RESET": SubResource("Animation_uf130")
 }
 
+[sub_resource type="Gradient" id="Gradient_j5x5f"]
+colors = PackedColorArray(0.162066, 0.162066, 0.162066, 1, 0.144063, 0.144063, 0.144063, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uc8sw"]
+gradient = SubResource("Gradient_j5x5f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52ywc"]
+shader = SubResource("Shader_tpxqm")
+shader_parameter/motion = Vector2(10, 10)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/contrast = 3.0
+shader_parameter/brightness = 1.0
+shader_parameter/graylight = 0.295
+shader_parameter/inverter = SubResource("GradientTexture1D_uc8sw")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gli1"]
 atlas = ExtResource("22_p5j88")
 region = Rect2(116, 0, 58, 52)
@@ -542,6 +645,63 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpfh7"]
+shader = ExtResource("8_aoadn")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/flashing = false
+shader_parameter/flashSpeed = 1.0
+shader_parameter/start_frame = 0
+shader_parameter/current_frame = 0
+shader_parameter/mix_ratio = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cw71"]
+atlas = ExtResource("34_sm50r")
+region = Rect2(0, 0, 34, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3p3o"]
+atlas = ExtResource("34_sm50r")
+region = Rect2(34, 0, 34, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pcg36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cw71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3p3o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgnm7"]
+atlas = ExtResource("36_uhnp8")
+region = Rect2(0, 0, 17, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mtyp"]
+atlas = ExtResource("36_uhnp8")
+region = Rect2(17, 0, 17, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irsxn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgnm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mtyp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.5
+}]
+
 [sub_resource type="Animation" id="Animation_2j21v"]
 length = 0.001
 tracks/0/type = "value"
@@ -591,6 +751,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 58)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Textittltllee:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-84, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bkg:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-85, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_h6so4"]
@@ -644,12 +828,108 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(17.9732),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_textTitleTime"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Textittltllee:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 12.1665, 15.2081),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-84, 0), Vector2(-84, 0), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("bkg:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 12.1665, 15.2081),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-85, 0), Vector2(-85, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_or014"]
 _data = {
 "RESET": SubResource("Animation_2j21v"),
 "TitleIntro": SubResource("Animation_h6so4")
 }
+
+[sub_resource type="Animation" id="Animation_7d0tj"]
+resource_name = "Tutorial_IC"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.606459),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(108, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8dg5l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(108, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08e3v"]
+_data = {
+"RESET": SubResource("Animation_8dg5l"),
+"Tutorial_IC": SubResource("Animation_7d0tj")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0etls"]
+atlas = ExtResource("22_p5j88")
+region = Rect2(0, 0, 58, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v62vm"]
+atlas = ExtResource("22_p5j88")
+region = Rect2(58, 0, 58, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_23l1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0etls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v62vm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="PeskyGame" type="Node2D" node_paths=PackedStringArray("slots", "iron", "sfx", "score", "solder", "character")]
 process_mode = 3
@@ -703,6 +983,18 @@ libraries = {
 root_node = NodePath("../GogglePlayer")
 libraries = {
 "": SubResource("AnimationLibrary_ixeoy")
+}
+
+[node name="FalseGrid" type="Sprite2D" parent="."]
+process_mode = 3
+z_index = 1
+position = Vector2(0, -50)
+texture = ExtResource("1_xtgxa")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FalseGrid"]
+libraries = {
+"": SubResource("AnimationLibrary_7ioak")
 }
 
 [node name="Whackgrid" type="Sprite2D" parent="."]
@@ -891,14 +1183,15 @@ text = "GAME OVER"
 [node name="try again" type="Label" parent="GameOver"]
 material = SubResource("ShaderMaterial_xneeu")
 layout_mode = 0
-offset_left = 2.0
+offset_left = 1.0
 offset_top = 37.0
-offset_right = 104.0
+offset_right = 83.0
 offset_bottom = 60.0
 theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
 theme_override_fonts/font = ExtResource("18_dg6uq")
 theme_override_font_sizes/font_size = 16
-text = "TRY AGAIN-PRESS 0"
+text = "RETRY - PRESS 0"
+horizontal_alignment = 1
 
 [node name="FinalScore" type="Label" parent="GameOver"]
 material = SubResource("ShaderMaterial_qtjbw")
@@ -947,7 +1240,6 @@ autostart = true
 
 [node name="TitleScreen" type="ColorRect" parent="."]
 process_mode = 3
-visible = false
 top_level = true
 z_index = 666
 z_as_relative = false
@@ -956,6 +1248,14 @@ offset_top = 58.0
 offset_right = 84.0
 offset_bottom = 106.0
 script = ExtResource("22_jts5t")
+
+[node name="bkg" type="TextureRect" parent="TitleScreen"]
+material = SubResource("ShaderMaterial_52ywc")
+offset_left = -85.0
+offset_right = -1.0
+offset_bottom = 48.0
+texture = ExtResource("3_0jqva")
+stretch_mode = 1
 
 [node name="flux_chibi" type="AnimatedSprite2D" parent="TitleScreen"]
 position = Vector2(-29, 26)
@@ -1013,10 +1313,179 @@ sprite_frames = SubResource("SpriteFrames_iy48l")
 autoplay = "default"
 frame_progress = 0.371291
 
+[node name="Textittltllee" type="Node2D" parent="TitleScreen"]
+position = Vector2(-84, 0)
+
+[node name="TitleScreenTitle" type="Sprite2D" parent="TitleScreen/Textittltllee"]
+position = Vector2(43, 25)
+texture = ExtResource("24_pn0ku")
+
+[node name="TitleScreenZeroKey" type="Sprite2D" parent="TitleScreen/Textittltllee"]
+position = Vector2(34, 27)
+texture = ExtResource("25_ugcec")
+
+[node name="fluxthumbus" type="AnimatedSprite2D" parent="TitleScreen/Textittltllee"]
+material = SubResource("ShaderMaterial_fpfh7")
+position = Vector2(16, 24)
+sprite_frames = SubResource("SpriteFrames_pcg36")
+autoplay = "default"
+frame_progress = 0.0543101
+
+[node name="arro" type="AnimatedSprite2D" parent="TitleScreen/Textittltllee"]
+position = Vector2(34, 14)
+sprite_frames = SubResource("SpriteFrames_irsxn")
+autoplay = "default"
+frame_progress = 0.992975
+
+[node name="TitleScreenBorder" type="Sprite2D" parent="TitleScreen"]
+position = Vector2(42, 24)
+texture = ExtResource("32_ben6m")
+
 [node name="TitleAnim" type="AnimationPlayer" parent="TitleScreen"]
 libraries = {
 "": SubResource("AnimationLibrary_or014")
 }
+
+[node name="TutorialScreen" type="ColorRect" parent="."]
+visible = false
+z_index = 665
+offset_left = 108.0
+offset_right = 192.0
+offset_bottom = 48.0
+script = ExtResource("22_jts5t")
+
+[node name="TutorialAnim" type="AnimationPlayer" parent="TutorialScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_08e3v")
+}
+
+[node name="Projectorscreen" type="Sprite2D" parent="TutorialScreen"]
+position = Vector2(42, 24)
+texture = ExtResource("32_au2dp")
+
+[node name="fluxchibiidle" type="AnimatedSprite2D" parent="TutorialScreen"]
+z_index = 3
+position = Vector2(25, 26)
+sprite_frames = SubResource("SpriteFrames_23l1t")
+autoplay = "default"
+frame_progress = 0.470678
+
+[node name="tut-ic" type="Node2D" parent="TutorialScreen"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="TutorialScreen/tut-ic"]
+position = Vector2(42, 19)
+texture = ExtResource("33_rmtit")
+hframes = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="TutorialScreen/tut-ic"]
+position = Vector2(70, 18)
+texture = ExtResource("34_kfc25")
+hframes = 3
+
+[node name="Sprite2D3" type="Sprite2D" parent="TutorialScreen/tut-ic"]
+position = Vector2(59, 35)
+texture = ExtResource("35_o383j")
+hframes = 3
+
+[node name="Sprite2D4" type="Sprite2D" parent="TutorialScreen/tut-ic"]
+position = Vector2(75, 34)
+texture = ExtResource("35_o383j")
+hframes = 3
+frame = 1
+
+[node name="Label" type="Label" parent="TutorialScreen/tut-ic"]
+offset_left = 31.0
+offset_right = 80.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.0705882, 0.0705882, 0.243137, 1)
+theme_override_fonts/font = ExtResource("18_dg6uq")
+text = "THREE 	HITS!"
+
+[node name="TransitionScreenArrow" type="Sprite2D" parent="TutorialScreen/tut-ic"]
+position = Vector2(58, 17)
+texture = ExtResource("36_oynlc")
+
+[node name="TransitionScreenArrow2" type="Sprite2D" parent="TutorialScreen/tut-ic"]
+position = Vector2(66, 27)
+rotation = 1.5708
+texture = ExtResource("36_oynlc")
+
+[node name="tut-led" type="Node2D" parent="TutorialScreen"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="TutorialScreen/tut-led"]
+position = Vector2(42, 17)
+texture = ExtResource("37_63i0g")
+hframes = 5
+
+[node name="Sprite2D2" type="Sprite2D" parent="TutorialScreen/tut-led"]
+position = Vector2(56, 30)
+texture = ExtResource("38_bwalh")
+hframes = 7
+frame = 3
+
+[node name="Sprite2D3" type="Sprite2D" parent="TutorialScreen/tut-led"]
+position = Vector2(75, 30)
+texture = ExtResource("38_bwalh")
+hframes = 7
+frame = 5
+
+[node name="Label" type="Label" parent="TutorialScreen/tut-led"]
+offset_left = 31.0
+offset_right = 80.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.0705882, 0.0705882, 0.243137, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("18_dg6uq")
+text = "HIT SWITCH!"
+
+[node name="TransitionScreenArrow2" type="Sprite2D" parent="TutorialScreen/tut-led"]
+position = Vector2(66, 30)
+texture = ExtResource("36_oynlc")
+
+[node name="tut-resist" type="Node2D" parent="TutorialScreen"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="TutorialScreen/tut-resist"]
+position = Vector2(64, 30)
+texture = ExtResource("30_7w4tg")
+hframes = 9
+frame = 2
+
+[node name="Label" type="Label" parent="TutorialScreen/tut-resist"]
+offset_left = 31.0
+offset_right = 80.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.0705882, 0.0705882, 0.243137, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("18_dg6uq")
+text = "2 SIDES!"
+horizontal_alignment = 1
+
+[node name="TransitionScreenArrow2" type="Sprite2D" parent="TutorialScreen/tut-resist"]
+position = Vector2(55, 20)
+rotation = 1.5708
+texture = ExtResource("36_oynlc")
+
+[node name="TransitionScreenArrow3" type="Sprite2D" parent="TutorialScreen/tut-resist"]
+position = Vector2(70, 20)
+rotation = 1.5708
+texture = ExtResource("36_oynlc")
+
+[node name="try again" type="Label" parent="TutorialScreen"]
+material = SubResource("ShaderMaterial_xneeu")
+offset_left = 9.0
+offset_top = 36.0
+offset_right = 91.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0.133333, 0.12549, 0.203922, 1)
+theme_override_fonts/font = ExtResource("18_dg6uq")
+theme_override_font_sizes/font_size = 16
+text = "PRESS 0 !"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="SpawnTime" to="." method="_on_spawn_time_timeout"]
 [connection signal="timeout" from="GameOver/WaitForCoolFace" to="GameOver" method="_on_wait_for_cool_face_timeout"]

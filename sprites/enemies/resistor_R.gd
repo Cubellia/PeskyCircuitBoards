@@ -15,7 +15,7 @@ func activate():
 		get_parent().queue_free()
 	else:
 		
-		Global._spawnEnemy(8,get_parent())
+		Global._spawnEnemy(6,get_parent())
 		var yy =get_parent().whereami.y
 
 		if yy==3:##ok now i really AM yanderedev. why the FUCK is match not working i dont understand
@@ -41,22 +41,23 @@ func _process(_delta):
 		set_process(false)
 
 func unalive():
-	if son.smushed:
-		smushed=true
-		son.fakeunalive()
-		get_parent().dead=true
-		$"../smushed".start()
-		$Timer.stop()
-		animation="unalive"
-		material.set_shader_parameter("flashing",true)
-	else:
-		if smushed:
-			AudioManager.play_sfx(failsfx)
-			Global._solderDecrease(2)
-			Global._missExpression()
-		else:
+	if son!=null:
+		if son.smushed:
 			smushed=true
+			son.fakeunalive()
+			get_parent().dead=true
+			$"../smushed".start()
+			$Timer.stop()
 			animation="unalive"
+			material.set_shader_parameter("flashing",true)
+		else:
+			if smushed:
+				AudioManager.play_sfx(failsfx)
+				Global._solderDecrease(2)
+				Global._missExpression()
+			else:
+				smushed=true
+				animation="unalive"
 
 func fakeunalive():
 

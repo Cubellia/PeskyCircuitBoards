@@ -15,6 +15,7 @@ func pickType(rng:int,location:Vector2,bypass:bool=false):
 	var enemyType=	get_child(rng)
 	if bypass == false:
 		while not enemyType in validEnemies:
+			print (enemyType)
 		#	rngo=(rngo+1)%(validEnemies.size()+1)
 			rngo=(rngo+1)%(get_child_count())
 			#print("iterate"+str( rngo))

@@ -2,7 +2,7 @@ extends ColorRect
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("nokia_0")&& $"..".gameoverscreen==true &&get_tree().paused == true:
+	if Input.is_action_just_pressed("nokia_0")&& $"..".gameoverscreen==true &&get_tree().paused == true &&$"..".tutorial==false:
 		$WaitForCoolFace.paused=false
 		$WaitForCoolFace.start()
 		$AnimatedSprite2D.play("ready")

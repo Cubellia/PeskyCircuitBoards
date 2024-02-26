@@ -153,7 +153,7 @@ animations = [{
 [node name="enemy" type="Node2D" node_paths=PackedStringArray("validEnemies")]
 texture_filter = 1
 script = ExtResource("1_mulhl")
-validEnemies = [NodePath("enemy_cappytan"), NodePath("enemy_resistor_R"), NodePath("enemy_switch"), NodePath("enemy_IC")]
+validEnemies = [NodePath("enemy_cappytan"), NodePath("enemy_IC"), NodePath("enemy_resistor_R"), NodePath("enemy_switch"), NodePath("enemy_switch")]
 
 [node name="enemy_cappytan" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -165,32 +165,6 @@ offset = Vector2(2.765, -10)
 script = ExtResource("4_nkigt")
 
 [node name="Timer" type="Timer" parent="enemy_cappytan"]
-wait_time = 0.7
-one_shot = true
-
-[node name="enemy_switch" type="AnimatedSprite2D" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-3, 0)
-sprite_frames = ExtResource("5_3hv38")
-autoplay = "default"
-offset = Vector2(2.765, -10)
-script = ExtResource("6_umetd")
-
-[node name="Timer" type="Timer" parent="enemy_switch"]
-wait_time = 0.7
-one_shot = true
-
-[node name="enemy_LED" type="AnimatedSprite2D" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_6fhtm")
-position = Vector2(-3, 0)
-sprite_frames = ExtResource("7_sbb8u")
-autoplay = "default"
-offset = Vector2(2.765, -10)
-script = ExtResource("7_hsoua")
-
-[node name="Timer" type="Timer" parent="enemy_LED"]
 wait_time = 0.7
 one_shot = true
 
@@ -279,17 +253,43 @@ script = ExtResource("17_ch3l3")
 wait_time = 0.7
 one_shot = true
 
+[node name="enemy_switch" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-3, 0)
+sprite_frames = ExtResource("5_3hv38")
+autoplay = "default"
+offset = Vector2(2.765, -10)
+script = ExtResource("6_umetd")
+
+[node name="Timer" type="Timer" parent="enemy_switch"]
+wait_time = 0.7
+one_shot = true
+
+[node name="enemy_LED" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_6fhtm")
+position = Vector2(-3, 0)
+sprite_frames = ExtResource("7_sbb8u")
+autoplay = "default"
+offset = Vector2(2.765, -10)
+script = ExtResource("7_hsoua")
+
+[node name="Timer" type="Timer" parent="enemy_LED"]
+wait_time = 0.7
+one_shot = true
+
 [node name="smushed" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
 [connection signal="timeout" from="enemy_cappytan/Timer" to="enemy_cappytan" method="_on_timer_timeout"]
-[connection signal="timeout" from="enemy_switch/Timer" to="enemy_switch" method="_on_timer_timeout"]
-[connection signal="timeout" from="enemy_LED/Timer" to="enemy_LED" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC/Timer" to="enemy_IC" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC2/Timer" to="enemy_IC2" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_IC3a/Timer" to="enemy_IC3a" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_ICb/Timer" to="enemy_ICb" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_resistor_R/Timer" to="enemy_resistor_R" method="_on_timer_timeout"]
 [connection signal="timeout" from="enemy_resistor_L/Timer" to="enemy_resistor_L" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_switch/Timer" to="enemy_switch" method="_on_timer_timeout"]
+[connection signal="timeout" from="enemy_LED/Timer" to="enemy_LED" method="_on_timer_timeout"]
 [connection signal="timeout" from="smushed" to="." method="_on_smushed_timeout"]

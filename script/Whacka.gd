@@ -12,7 +12,8 @@ var enemy = preload("res://sprites/enemies/enemy.tscn")
 var enemies = []
 var jitterTween 
 @export var jitterSpeed = 0.05
-var music_title =preload("res://music/titlescreenmayb.mp3")
+var music_title =preload("res://music/NokiaJam_TitleScreen.mp3")##this is the intro animation, not the actual title
+var music_texttitle =preload("res://music/NokiaJam_Title_TextScreen.mp3")
 var sfx_good=preload("res://sfx/hit6.wav")
 var sfx_neutral=preload("res://sfx/blip4.wav")
 var music_gameOver=preload("res://music/negative1.wav")
@@ -21,12 +22,19 @@ var sfx_restart=preload("res://sfx/good3.wav")
 
 var title=true
 var gameoverscreen=false
-var unlocked_enemies=4
+var waitingforanim=false
+var tutorial =false
+var unlocked_enemies=0
+var enemyUnlockOrder=["ic","resist","led"]
+var scoreNeededToLevelUp=25
 func readyGame():
 	title=false
 	$TitleScreen/TitleAnim.play("RESET")
 	_reloadgame()
-	
+
+func _textTitleTime():
+	AudioManager.play_music(music_texttitle)
+
 func _ready():
 	AudioManager.play_music(music_title)
 	$TitleScreen/TitleAnim.play("TitleIntro" )
@@ -44,6 +52,23 @@ func _scoreIncrease(amt):
 	score.text=str(int(score.text)+amt)
 
 func _process(delta):
+			if tutorial==true:
+				if Input.is_action_just_pressed("nokia_0"):
+					_resumeGameFromTutorial()
+			if unlocked_enemies<=enemyUnlockOrder.size()-1&&  int(score.text)>=scoreNeededToLevelUp && waitingforanim==false:
+				print("level up")
+				scoreNeededToLevelUp+=25
+				tutorial=true
+				waitingforanim=true
+				for g in $TutorialScreen.get_children():
+					if g.name.contains("tut-"):
+						if g.name.contains(enemyUnlockOrder[unlocked_enemies]):
+							g.visible=true
+						else:
+							g.visible=false
+				
+				$TutorialScreen/TutorialAnim.play("Tutorial_IC")
+
 			if title==true:
 				if Input.is_anything_pressed():
 					readyGame()
@@ -51,7 +76,7 @@ func _process(delta):
 				#title = true #dont worry if this doesnt make sense by ear, im lazy
 				#get_tree().paused=false
 				
-			if(title==false &&gameoverscreen==false):
+			if(title==false &&gameoverscreen==false&&waitingforanim==false):
 				var pressed = false
 				var k=0
 				##i feel filthy. i feel like i am yanderedev. i am not a coder. i will never be a coder. i am ashamed. i will one day stand before god for my crimes. juan help me.
@@ -142,8 +167,6 @@ func _process(delta):
 						AudioManager.play_sfx(sfx_neutral)
 						_solderDecrease(1)
 
-
-
 func _failExpression():
 	character.find_child("FacePlayer").seek(0.0)
 	character.find_child("FacePlayer").play("Failure")
@@ -152,6 +175,7 @@ func _failExpression():
 
 #func _process(delta):
 func _reloadgame():
+	scoreNeededToLevelUp=25
 	title=false
 	gameoverscreen=false
 	get_tree().paused=false
@@ -166,26 +190,54 @@ func _reloadgame():
 	$MenuAnim.play("RESET")
 	$SpawnTime.paused=false
 	$SpawnTime.start()
+	waitingforanim=true
+	$FalseGrid/AnimationPlayer.play("fall")
+	#$Music.stream=music_main
+	#$Music.play()
+	AudioManager.play_music(music_main)
+	AudioManager.play_sfx(sfx_restart)
+
+func _resumeGameFromTutorial():
+	tutorial=false
+	title=false
+	gameoverscreen=false
+	get_tree().paused=false
+	for square in slots.get_children():
+		if square.get_child_count()>0:
+			square.get_child(0).queue_free()
+
+	solder.value=solder.max_value
+	unlocked_enemies+=1
+	if unlocked_enemies>=3:
+		unlocked_enemies=7
+	Global.board_occupancy=0
+	print("reload game")
+	$MenuAnim.play("RESET")
+	$SpawnTime.paused=false
+	$SpawnTime.start()
+	$TutorialScreen/TutorialAnim.play_backwards("Tutorial_IC")
+	waitingforanim=false
+	$FalseGrid/AnimationPlayer.play("fall")
 	#$Music.stream=music_main
 	#$Music.play()
 	AudioManager.play_music(music_main)
 	AudioManager.play_sfx(sfx_restart)
 	
-	
 func _gameOver():
-	gameoverscreen=true
-	get_tree().paused = true
+	if tutorial==false:
+		gameoverscreen=true
+		get_tree().paused = true
 
-	$MenuAnim.play("GAMEOVER")
-	#$Music.stream=music_gameOver
-	#$Music.play()
-	AudioManager.play_music(music_gameOver)
-	AudioManager.play_sfx(music_gameOver)
-	$GameOver/FinalScore.text="Score: "+score.text
-	$GameOver/WaitForSleepyFace.paused=false
-	$GameOver/WaitForSleepyFace.start()
-	$GameOver/AnimatedSprite2D.play("default")
-	print("YOU lOSE")
+		$MenuAnim.play("GAMEOVER")
+		#$Music.stream=music_gameOver
+		#$Music.play()
+		AudioManager.play_music(music_gameOver)
+		AudioManager.play_sfx(music_gameOver)
+		$GameOver/FinalScore.text="Score: "+score.text
+		$GameOver/WaitForSleepyFace.paused=false
+		$GameOver/WaitForSleepyFace.start()
+		$GameOver/AnimatedSprite2D.play("default")
+		print("YOU lOSE")
 
 func _spawnEnemy(who,fromwho):
 	#print ("Spawn "+str(who))
@@ -226,7 +278,7 @@ func _on_spawn_time_timeout():
 	#print("go "+str(gameoverscreen))
 	#print("title "+str(title))
 	#print("occupancy"+str( Global.board_occupancy ))
-	if gameoverscreen==false && title==false:
+	if gameoverscreen==false && title==false&&waitingforanim==false:
 		
 		if Global.board_occupancy < Global.max_board_occupancy:
 			var randomtile = randi_range(0,8)
@@ -240,5 +292,7 @@ func _on_spawn_time_timeout():
 				e.pickType(randi_range(0,unlocked_enemies),Global.keyPosition(randomtile))
 				e.position=Vector2.ZERO
 
+func spawntimergo():
+	waitingforanim=false
 func _on_solder_depleter_timeout():
 	_solderDecrease(1)
