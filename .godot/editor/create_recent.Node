@@ -1,11 +1,11 @@
+TextureRect
 Node2D
+AnimationPlayer
 AnimatedSprite2D
 Label
 Sprite2D
 Node
-AnimationPlayer
 ColorRect
-TextureRect
 Timer
 NinePatchRect
 TextureProgressBar

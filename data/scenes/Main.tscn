@@ -1,8 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4j1hqmidquah"]
+[gd_scene load_steps=11 format=3 uid="uid://d4j1hqmidquah"]
 
 [ext_resource type="Material" uid="uid://c6c5rp76nb0q8" path="res://shaders/material_nokiascreen.tres" id="1_648pm"]
+[ext_resource type="Texture2D" uid="uid://ciddo2255xa1u" path="res://palettes/pexels-tima-miroshnichenko-6755087.jpg" id="1_vpcsy"]
 [ext_resource type="PackedScene" uid="uid://jg5rjye5ums2" path="res://pesky_game.tscn" id="2_6nq8a"]
+[ext_resource type="Script" path="res://data/scenes/autoplay.gd" id="2_60e73"]
 [ext_resource type="Texture2D" uid="uid://c54slw7vlffy0" path="res://nokiaframe.png" id="3_l23ay"]
+
+[sub_resource type="Animation" id="Animation_o3ii7"]
+resource_name = "itsanokia"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(8.7, 9.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(419, 180), Vector2(419, 254)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.7, 9.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.303484, 0.303484), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jjbq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(419, 254)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bs8f0"]
+_data = {
+"RESET": SubResource("Animation_jjbq5"),
+"itsanokia": SubResource("Animation_o3ii7")
+}
 
 [sub_resource type="Gradient" id="Gradient_ylfsg"]
 offsets = PackedFloat32Array(1)
@@ -14,84 +77,63 @@ gradient = SubResource("Gradient_ylfsg")
 [node name="Main" type="Node"]
 process_mode = 3
 
-[node name="ColorRect" type="Sprite2D" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.290196, 0.588235, 0.737255, 1)
+offset_left = -12.0
+offset_top = -255.0
+offset_right = 3793.0
+offset_bottom = 2282.0
+scale = Vector2(0.356129, 0.328964)
+texture = ExtResource("1_vpcsy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bs8f0")
+}
+script = ExtResource("2_60e73")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(419, 254)
+
+[node name="ColorRect" type="Sprite2D" parent="Node2D"]
 material = ExtResource("1_648pm")
-position = Vector2(421.5, 234.5)
+position = Vector2(1.50073, 2.50017)
 scale = Vector2(10.1719, 6.26563)
 texture = SubResource("GradientTexture2D_m4b4y")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Node2D"]
 texture_filter = 1
 material = ExtResource("1_648pm")
-offset_left = 119.0
-offset_top = 57.0
-offset_right = 203.0
-offset_bottom = 105.0
+offset_left = -300.999
+offset_top = -175.0
+offset_right = -216.999
+offset_bottom = -127.0
 scale = Vector2(7, 7)
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Node2D/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(84, 48)
 render_target_update_mode = 4
 
-[node name="PeskyGame" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_6nq8a")]
+[node name="PeskyGame" parent="Node2D/SubViewportContainer/SubViewport" instance=ExtResource("2_6nq8a")]
 
-[node name="InfoLabel" type="RichTextLabel" parent="."]
+[node name="InfoLabel" type="RichTextLabel" parent="Node2D"]
 clip_contents = false
-offset_left = 862.0
-offset_top = 110.0
-offset_right = 1596.0
-offset_bottom = 805.0
+offset_left = 425.996
+offset_top = -120.709
+offset_right = 1160.0
+offset_bottom = 574.291
 scale = Vector2(0.257006, 0.257006)
 bbcode_enabled = true
-text = "Delete this InfoLabel Node when not needed anymore
-
-InputMap:
-Twelve actions were added to the InputMap: nokia_0 up to nokia_9, nokia_* and nokia_#
-By default they are mapped to keypad keys from 0 to 9, right arrow as [*] and period (dot) as [#]
-Look at this Nokia photo for layout reference ----->
-
-All keypads should have the same 1 to 9 keys layout but the three lowest buttons may change across different manufacturers
-
-Feel free to modify these default mappings and add more buttons to each action to better suit your game
-(Each action can have multiple keys, so you could make, for example, nokia_5 be also tied to space bar and X on a controller)
-
-
-Audio:
-A singleton named AudioManager and a few AudioBuses were added. It's a simple system that makes sure the music and sound effects don't overlap (Nokia 3310 has only one audio channel)
-Check its script at res://data/autoload/AudioManager.gd
-
-
-Shader:
-The SubViewportContainer node has a ShaderMaterial applied. It limits the number of colors the SubViewport has and automatically dithers the colors inbetween. Just make your game black and white and the shader deals with the rest. You can change the shader parameters to make it use different colors.
-Color palette reference ----->
-
-Modified project settings:
-boot_splash/image (with use_filter disabled) changed to a custom image
-
-settings/fps/force_fps set to 15 because that's the Nokia's screen refreshing rate
-
-window/size: width and height set to 840x480
-window/stretch/mode set to \"viewport\"
-window/stretch/aspect set to \"keep\"
-These settings make the game run at a constant resolution, even when the window is resized
-
-quality/driver/driver_name set to GLES2 because we don't need higher quality graphics
-quality/filters/use_nearest_mipmap_filter set to true
-environment/default_clear_color set to black
-
-This scene contains a SubViewport with size = (84, 48) inside a SubViewportContainer with strech_shrink = 10
-This makes the Game.tscn scene run at a resolution of 84x48. The SubViewportContainer streches it ten times, so the windows's resolution was set to 840x480
-(If you want to make a portrait mode game change these values around and also the ScreenSize parameter in the dither shader)"
 scroll_active = false
 
-[node name="Nokia3310" type="Sprite2D" parent="InfoLabel"]
-position = Vector2(-1727.59, 1311.25)
+[node name="Nokia3310" type="Sprite2D" parent="Node2D/InfoLabel"]
+position = Vector2(-1665.31, 1306.23)
 rotation = -0.00539001
 scale = Vector2(4.17695, 3.51463)
 texture = ExtResource("3_l23ay")
 
-[node name="PaletteRect1" type="ColorRect" parent="InfoLabel"]
+[node name="PaletteRect1" type="ColorRect" parent="Node2D/InfoLabel"]
 visible = false
 layout_mode = 0
 offset_left = 786.0
@@ -100,7 +142,7 @@ offset_right = 826.0
 offset_bottom = 382.0
 color = Color(0.780392, 0.941176, 0.847059, 1)
 
-[node name="PaletteRect2" type="ColorRect" parent="InfoLabel"]
+[node name="PaletteRect2" type="ColorRect" parent="Node2D/InfoLabel"]
 visible = false
 layout_mode = 0
 offset_left = 786.0
@@ -109,7 +151,7 @@ offset_right = 826.0
 offset_bottom = 422.0
 color = Color(0.262745, 0.321569, 0.239216, 1)
 
-[node name="PaletteRect3" type="ColorRect" parent="InfoLabel"]
+[node name="PaletteRect3" type="ColorRect" parent="Node2D/InfoLabel"]
 visible = false
 layout_mode = 0
 offset_left = 846.0
@@ -118,7 +160,7 @@ offset_right = 886.0
 offset_bottom = 382.0
 color = Color(0.607843, 0.780392, 0, 1)
 
-[node name="PaletteRect4" type="ColorRect" parent="InfoLabel"]
+[node name="PaletteRect4" type="ColorRect" parent="Node2D/InfoLabel"]
 visible = false
 layout_mode = 0
 offset_left = 846.0
@@ -127,7 +169,7 @@ offset_right = 886.0
 offset_bottom = 422.0
 color = Color(0.168627, 0.247059, 0.0352941, 1)
 
-[node name="PaletteRect5" type="ColorRect" parent="InfoLabel"]
+[node name="PaletteRect5" type="ColorRect" parent="Node2D/InfoLabel"]
 visible = false
 layout_mode = 0
 offset_left = 906.0
@@ -136,7 +178,7 @@ offset_right = 946.0
 offset_bottom = 382.0
 color = Color(0.529412, 0.568627, 0.533333, 1)
 
-[node name="PaletteRect6" type="ColorRect" parent="InfoLabel"]
+[node name="PaletteRect6" type="ColorRect" parent="Node2D/InfoLabel"]
 visible = false
 layout_mode = 0
 offset_left = 906.0

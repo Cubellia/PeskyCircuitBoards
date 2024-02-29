@@ -24,7 +24,7 @@ var title=true
 var gameoverscreen=false
 var waitingforanim=false
 var tutorial =false
-var unlocked_enemies=0
+var unlocked_enemies=3
 var enemyUnlockOrder=["ic","resist","led"]
 var scoreNeededToLevelUp=25
 func readyGame():
